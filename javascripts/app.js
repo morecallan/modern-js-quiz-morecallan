@@ -8,6 +8,7 @@ var $ = require("jquery"),
     robot = require("./robot.js"),
     models = require("./models.js"),
     modifications = require("./modifications.js"),
+    types = require("./types.js"),
     weapons = require("./weapons.js");
 
 
