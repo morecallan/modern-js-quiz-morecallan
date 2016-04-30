@@ -4,7 +4,6 @@
 **          Browserify Dependencies        **
 ********************************************/
 var $ = require("jquery"),
-    models = require("./models.js"),
     modifications = require("./modifications.js"),
     types = require("./types.js"),
     weapons = require("./weapons.js");

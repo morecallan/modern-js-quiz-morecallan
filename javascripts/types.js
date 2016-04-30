@@ -4,7 +4,7 @@
 **          Browserify Dependencies        **
 ********************************************/
 var $ = require("jquery"),
-    robots = require("robots.js");
+    robot = require("./robot.js");
 
 
 
@@ -37,7 +37,7 @@ RobotTypes.PlayerTypes = ()  => {
 /****************** DRONES *****************/
 /*******   Drone Type Base Object  *********/
 RobotTypes.Drone = ()  => {
-    this.name = "Drone"
+    this.name = "Drone";
     this.robotType = "Drone";
     this.healthMax = 150;
 };
@@ -48,15 +48,15 @@ RobotTypes.Drone.prototype = new RobotTypes.PlayerTypes();
 RobotTypes.DJPhantom = () => {
     // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 40 + 110);
-    this.health = originalHealth;
-}
+    this.health = this.originalHealth;
+};
 RobotTypes.DJPhantom.prototype = new RobotTypes.Drone();
 
 RobotTypes.Bebop = () => {
     // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 50 + 100);
-    this.health = originalHealth;
-}
+    this.health = this.originalHealth;
+};
 RobotTypes.DJPhantom.prototype = new RobotTypes.Drone();
 /*******************************************/
 
@@ -65,7 +65,7 @@ RobotTypes.DJPhantom.prototype = new RobotTypes.Drone();
 /***************** BIPEDAL *****************/
 /******   Bipedal Type Base Object  ********/
 RobotTypes.Bipedal = ()  => {
-    this.name = "Bipedal"
+    this.name = "Bipedal";
     this.robotType = "Bipedal";
     this.healthMax = 110;
 };
@@ -76,15 +76,15 @@ RobotTypes.Bipedal.prototype = new RobotTypes.PlayerTypes();
 RobotTypes.ChickenWalker = () => {
     // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 20 + 90);
-    this.health = originalHealth;
-}
+    this.health = this.originalHealth;
+};
 RobotTypes.ChickenWalker.prototype = new RobotTypes.Bipedal();
 
 RobotTypes.HUBO = () => {
     // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 30 + 80);
-    this.health = originalHealth;
-}
+    this.health = this.originalHealth;
+};
 RobotTypes.HUBO.prototype = new RobotTypes.Bipedal();
 /*******************************************/
 
@@ -94,7 +94,7 @@ RobotTypes.HUBO.prototype = new RobotTypes.Bipedal();
 /*******   Cyborg Type Base Object  ********/
 RobotTypes.Cyborg = ()  => {
     // LR4: Give each robot model a different range of health
-    this.name = "Cyborg"
+    this.name = "Cyborg";
     this.robotType = "Cyborg";
     this.healthMax = 100;
 };
@@ -104,16 +104,16 @@ RobotTypes.Cyborg.prototype = new RobotTypes.PlayerTypes();
 RobotTypes.InspectorGadget = () => {
     // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 50 + 50);
-    this.health = originalHealth;
-}
+    this.health = this.originalHealth;
+};
 RobotTypes.InspectorGadget.prototype = new RobotTypes.Cyborg();
 
 RobotTypes.BionicWoman = () => {
     // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 60 + 40);
-    this.health = originalHealth;
+    this.health = this.originalHealth;
     this.moodSwings = true;
-}
+};
 RobotTypes.BionicWoman.prototype = new RobotTypes.Cyborg();
 /*******************************************/
 
