@@ -45,7 +45,7 @@ Robots.Player.prototype.setType = (newType)  => {
 };
 
 Robots.Player.prototype.setModel = (newModel)  => {
-  this.model = new models.RobotModels[newModel]();
+  this.model = new types.RobotTypes[newModel]();
 };
 
 Robots.Player.prototype.setModifcation = (newModification)  => {

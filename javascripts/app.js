@@ -6,7 +6,6 @@
 var $ = require("jquery"),
     battle = require("./battle.js"),
     robot = require("./robot.js"),
-    models = require("./models.js"),
     modifications = require("./modifications.js"),
     types = require("./types.js"),
     weapons = require("./weapons.js");
