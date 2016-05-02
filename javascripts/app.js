@@ -12,9 +12,10 @@ var $ = require("jquery"),
 
 
 //Code to generate a human player and an orc player
-var robotP1; // = new enemies.Orc()
-
-var robotP2; // = new player.Combatants.Human()
+var robotP1 = new robot.Robots.Player();
+console.log("robotP1", robotP1);
+var robotP2 = new robot.Robots.Player();
+console.log("robotP2", robotP2);
 
 
 

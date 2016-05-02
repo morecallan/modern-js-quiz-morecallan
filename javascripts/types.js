@@ -11,7 +11,7 @@ var $ = require("jquery"),
 /********************************************
 **        HOLDS ALL ASSETS FOR TYPES       **
 ********************************************/
-var RobotTypes = {};
+const RobotTypes = {};
 
 
 
@@ -19,7 +19,7 @@ var RobotTypes = {};
 **     LOGIC REQ 2: Define 3 type func     **
 **     LOGIC REQ 3: Define 2 type func     **
 ********************************************/
-RobotTypes.PlayerTypes = ()  => {
+RobotTypes.PlayerTypes = function() {
     this.allowedTypes = ["Drone", "Bipedal", "ATV"];
 };
 
@@ -36,7 +36,7 @@ RobotTypes.PlayerTypes = ()  => {
 
 /****************** DRONES *****************/
 /*******   Drone Type Base Object  *********/
-RobotTypes.Drone = ()  => {
+RobotTypes.Drone = function () {
     this.name = "Drone";
     this.robotType = "Drone";
     this.healthMax = 150;
@@ -64,7 +64,7 @@ RobotTypes.DJPhantom.prototype = new RobotTypes.Drone();
 
 /***************** BIPEDAL *****************/
 /******   Bipedal Type Base Object  ********/
-RobotTypes.Bipedal = ()  => {
+RobotTypes.Bipedal = function (){
     this.name = "Bipedal";
     this.robotType = "Bipedal";
     this.healthMax = 110;
@@ -92,7 +92,7 @@ RobotTypes.HUBO.prototype = new RobotTypes.Bipedal();
 
 /****************** CYBORG *****************/
 /*******   Cyborg Type Base Object  ********/
-RobotTypes.Cyborg = ()  => {
+RobotTypes.Cyborg = function (){
 // LR4: Give each robot model a different range of health
     this.name = "Cyborg";
     this.robotType = "Cyborg";

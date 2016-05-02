@@ -10,7 +10,7 @@ let $ = require("jquery");
 /********************************************
 **        HOLDS ALL ASSETS FOR TYPES       **
 ********************************************/
-let RobotModifications = {};
+const RobotModifications = {};
 
 
 
@@ -23,7 +23,8 @@ let RobotModifications = {};
 *****             - Failsafe            *****
 *****             - Raised Well         *****
 ********************************************/
-RobotModifications.Modification = ()  => {
+RobotModifications.Modification = function() {
+    this.name = 'base name';
     this.protection = null;
     this.increaseWeaponDamage = null;
     this.evasion = null;
@@ -31,13 +32,13 @@ RobotModifications.Modification = ()  => {
 
 
 
-RobotModifications.Speed = ()  => {
+RobotModifications.Speedy = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
     this.protection = 10;
     this.increaseWeaponDamage = 0;
     this.evasion = 50;
 };
-RobotModifications.Speed.prototype = new RobotModifications.Modification();
+RobotModifications.Speedy.prototype = new RobotModifications.Modification();
 
 RobotModifications.ShieldBreaker = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
@@ -45,7 +46,7 @@ RobotModifications.ShieldBreaker = ()  => {
     this.increaseWeaponDamage = 90;
     this.evasion = 0;
 };
-RobotModifications.Speed.prototype = new RobotModifications.Modification();
+RobotModifications.ShieldBreaker.prototype = new RobotModifications.Modification();
 
 RobotModifications.BattleshipArmor = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
@@ -53,7 +54,7 @@ RobotModifications.BattleshipArmor = ()  => {
     this.increaseWeaponDamage = 0;
     this.evasion = 10;
 };
-RobotModifications.Speed.prototype = new RobotModifications.Modification();
+RobotModifications.BattleshipArmor.prototype = new RobotModifications.Modification();
 
 RobotModifications.StealthTechnology = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
@@ -61,7 +62,7 @@ RobotModifications.StealthTechnology = ()  => {
     this.increaseWeaponDamage = 0;
     this.evasion = 50;
 };
-RobotModifications.Speed.prototype = new RobotModifications.Modification();
+RobotModifications.StealthTechnology.prototype = new RobotModifications.Modification();
 
 RobotModifications.Failsafe = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
@@ -69,7 +70,7 @@ RobotModifications.Failsafe = ()  => {
     this.increaseWeaponDamage = 0;
     this.evasion = 120;
 };
-RobotModifications.Speed.prototype = new RobotModifications.Modification();
+RobotModifications.Failsafe.prototype = new RobotModifications.Modification();
 
 RobotModifications.RaisedWell = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
@@ -77,7 +78,7 @@ RobotModifications.RaisedWell = ()  => {
     this.increaseWeaponDamage = -10;
     this.evasion = 70;
 };
-RobotModifications.Speed.prototype = new RobotModifications.Modification();
+RobotModifications.RaisedWell.prototype = new RobotModifications.Modification();
 
 
 

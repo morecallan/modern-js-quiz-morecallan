@@ -20,7 +20,7 @@ var Robots = {};
 /********************************************
 **        LOGIC REQ 1: Base Robot Func     **
 ********************************************/
-Robots.Player  = ()  => {
+Robots.Player  = function() {
   this.playerName = null;
 
   //IS A:
