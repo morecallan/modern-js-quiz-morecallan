@@ -4,6 +4,7 @@
 //BROWSERIFY ENTRY FILE: Requirements (es6 notation)
 //Now everytime we need to call a function or variable in these JS files, we will need to reference it as <varName>.monster, etc
 var $ = require("jquery"),
+    DOM = require("./DOMAppend.js"),
     battle = require("./battle.js"),
     robot = require("./robot.js"),
     modifications = require("./modifications.js"),
@@ -13,10 +14,10 @@ var $ = require("jquery"),
 
 //Code to generate a human player and an orc player
 var robotP1 = new robot.Robots.Player();
-console.log("robotP1", robotP1);
 var robotP2 = new robot.Robots.Player();
-console.log("robotP2", robotP2);
 
+
+DOM.displayPlayer1SetUp();
 
 
 
