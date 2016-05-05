@@ -21,31 +21,98 @@
         <section id="p1setup" class="page">
             <!-- When your user interface first loads, provide the user with buttons so that one specific robot model can be chosen as Player 1. -->
             <div class="row logobar">
-                <div class="col-md-4"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
-                <div class="col-md-4"></div>
-                <div class="col-md-4"><h2 class="logoSub">PLAYER 1 SETUP</h2></div>
+                <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5"><h2 class="logoSub">PLAYER 1 SETUP</h2></div>
             </div>
-            <div class="col-md-4">
-            <div id="player1Name">
-                <div class="card__prompt row">
-                <div class="header">PLAYER 1 NAME</div>
-                <div class="field">
-                  <input type="text" autofocus="true" id="p1NameInput" class="field__textinput" >
+
+            <div class="col-md-4" id="player1LeftSide">
+                <div id="player1Name">
+                    <div class="card__prompt row">
+                    <div class="header">PLAYER 1 NAME</div>
+                    <div class="field">
+                      <input type="text" autofocus="true" id="p1NameInput" class="field__textinput" >
+                    </div>
+                    <div id="p1NameNextArrow">></div>
+                    </div>
                 </div>
-                <div id="p1NameNextArrow">></div>
+
+                <div id="player1Type">
+                    <div class="card__prompt row">
+                    <div class="header">PLAYER 1 TYPE</div>
+                    <div class="playerType"><img src="img/robot1.jpg"><p>DRONE</p></div>
+                    <div class="playerType"><img src="img/robot2.jpg"><p>BIPEDAL</p></div>
+                    <div class="playerType"><img src="img/robot3.jpg"><p>CYBORG</p></div>
+                    <div id="p1TypeNextArrow">></div>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <div class="card__prompt row">
-                <div class="header">PLAYER 1 SETUP</div>
-                <div class="field">
-                  <input type="text" autofocus="true" id="p1-name" class="field__textinput" >
+
+            <div class="col-md-8" id="player1RightSide">
+                <div id="player1Model">
+                    <div class="card__prompt row">
+                    <div class="header">PLAYER 1 MODEL</div>
+                    <div class="playerModel"><img src="img/robot4.jpg">
+                        <div class="modelDetailsContainer">
+                            <h3>MODEL 1</h3>
+                            <div class="modelStat"><h3>HEALTH:</h3>
+                                <div class="progress">
+                                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 55%">
+                                    <span class="sr-only">20% Complete</span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="modelStat">
+                            <h3>STRENGTH:</h3>
+                                <div class="progress">
+                                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                    <span class="sr-only">20% Complete</span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="modelStat">
+                            <h3>EVASION:</h3>
+                                <div class="progress">
+                                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                    <span class="sr-only">20% Complete</span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="playerModel"><img src="img/robot5.jpg">
+                        <div class="modelDetailsContainer">
+                            <h3>MODEL 2</h3>
+                            <div class="modelStat"><h3>HEALTH:</h3>
+                                <div class="progress">
+                                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                                    <span class="sr-only">20% Complete</span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="modelStat">
+                            <h3>STRENGTH:</h3>
+                                <div class="progress">
+                                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 83%">
+                                    <span class="sr-only">20% Complete</span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="modelStat">
+                            <h3>EVASION:</h3>
+                                <div class="progress">
+                                  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                    <span class="sr-only">20% Complete</span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="p1ModelNextArrow">></div>
                 </div>
             </div>
             </div>
-            </div>
-
 
 
         </section>

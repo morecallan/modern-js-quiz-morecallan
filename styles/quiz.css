@@ -1,26 +1,39 @@
+body {
+  font-family: 'Iceberg', cursive;
+  background: url(../img/battledome.jpg) center center fixed;
+  background-size:cover;
+  margin-left: 10px;
+}
+
+
 /*****************       LOGO       *******************/
 #logobar {
-  background-color: slategray;
   display: inline-block;
+  color: white;
 }
 
 .logoMain {
   font-family: 'Black Ops One', cursive;
+  color: white;
+  font-size: 40px;
+  text-align: center;
 }
 
 .logoSub {
-  font-family: 'Iceberg', cursive;
+  color: white;
+  font-size: 40px;
+  text-align: center;
 }
 
 /***************** PLAYER 1 PAGE 1 *******************/
 #player1Name {
-  margin: 0;
-  height: 120px;
+  margin-top: 30px;
+  height: 140px;
   background-color: black;
+  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
 }
 
 #player1Name .header{
-  font-family: 'Iceberg', cursive;
   font-size: 30px;
   color: white;
   width: 80%;
@@ -30,15 +43,130 @@
 #p1NameInput {
   width: 80%;
   margin: .5em 0 0 7%;
-  font-family: 'Iceberg', cursive;
   font-size: 24px;
+  color: blue;
 }
 
 #p1NameNextArrow {
-  font-family: 'Iceberg', cursive;
   font-size: 60px;
   color: white;
   position: relative;
   left: 89%;
   top: -1.3em;
+}
+
+#p1NameNextArrow:hover {
+  text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+}
+
+
+#player1Type {
+  margin-top: 38px;
+  height: 300px;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  display: block;
+  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+}
+
+#player1Type .header{
+  font-size: 30px;
+  color: white;
+  width: 80%;
+  margin: .3em 0 0 20%;
+}
+
+#player1Type p{
+  margin: 5px 0;
+  text-align: center;
+}
+
+
+#player1Type img {
+  margin: 2em 15% 0 15%;
+  display: block;
+  width: 70%;
+}
+
+.playerType {
+  margin-top: .5em;
+  display: inline-block;
+  width: 30%;
+}
+
+#p1TypeNextArrow {
+  font-size: 60px;
+  color: white;
+  position: relative;
+  left: 89%;
+  top: -2em;
+}
+
+#p1TypeNextArrow:hover {
+  text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+}
+
+
+
+#player1Model {
+  margin-top: 30px;
+  height: 480px;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  display: block;
+  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+}
+
+#player1Model .header{
+  font-size: 30px;
+  color: white;
+  width: 80%;
+  margin: .3em 0 0 20%;
+}
+
+.playerModel {
+  margin: 30px 5% 0 5%;
+  display: inline-block;
+  width: 85%;
+  background: rgba(255, 255, 255, .2);
+}
+
+.modelDetailsContainer {
+  display: inline-block;
+  width: 66%;
+  margin: 0 5%;
+  float: right;
+}
+
+#player1Model img {
+  margin: 2%;
+  display: inline-block;
+  float: left;
+  width: 15%;
+}
+
+.playerModel .modelStat h3 {
+  display: inline-block;
+  font-size: 24px;
+  margin: 4px;
+}
+
+.playerModel .modelStat .progress {
+  display: inline-block;
+  width: 60%;
+  margin: auto;
+}
+
+#p1ModelNextArrow {
+  font-size: 60px;
+  color: white;
+  position: relative;
+  left: 94%;
+  top: -4em;
+}
+
+#p1ModelNextArrow:hover {
+  text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
 }
