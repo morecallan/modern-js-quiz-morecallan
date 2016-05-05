@@ -22,6 +22,7 @@ var Robots = {};
 ********************************************/
 Robots.Player  = function() {
   this.playerName = null;
+  this.img = null;
 
   //IS A:
   this.type = null;
