@@ -12,47 +12,43 @@
 
 
 
-
-
-
-
 <body>
     <article id="game-container">
         <section id="p1setup" class="page">
             <!-- When your user interface first loads, provide the user with buttons so that one specific robot model can be chosen as Player 1. -->
-            <div class="row logobar">
+            <div class="row" id="logoBar">
                 <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
                 <div class="col-md-2"></div>
                 <div class="col-md-5"><h2 class="logoSub">PLAYER 1 SETUP</h2></div>
             </div>
 
-            <div class="col-md-4" id="player1LeftSide">
-                <div id="player1Name">
-                    <div class="card__prompt row">
-                    <div class="header">PLAYER 1 NAME</div>
+            <div class="col-md-4" id="player1NameAndTypeLeft">
+                <div id="player1Name" class="playSetUpCard">
+                  <div class="row">
+                    <div class="cardHeader">PLAYER 1 NAME...</div>
+                    <a id="p1NameNextArrow" class="nextArrow">></a>
                     <div class="field">
                       <input type="text" autofocus="true" id="p1NameInput" class="field__textinput" >
                     </div>
-                    <div id="p1NameNextArrow">></div>
-                    </div>
+                  </div>
                 </div>
 
-                <div id="player1Type">
-                    <div class="card__prompt row">
-                    <div class="header">PLAYER 1 TYPE</div>
-                    <div class="playerType"><img src="img/robot1.jpg"><p>DRONE</p></div>
-                    <div class="playerType"><img src="img/robot2.jpg"><p>BIPEDAL</p></div>
-                    <div class="playerType"><img src="img/robot3.jpg"><p>CYBORG</p></div>
-                    <div id="p1TypeNextArrow">></div>
+                <div id="player1Type" class="playSetUpCard">
+                    <div class="row">
+                      <div class="cardHeader">PLAYER 1 TYPE...</div>
+                      <a id="p1TypeNextArrow" class="nextArrow">></a>
+                      <div class="playerType"><img src="img/robot1.jpg"><p class="imageLabel">DRONE</p></div>
+                      <div class="playerType"><img src="img/robot2.jpg"><p class="imageLabel">BIPEDAL</p></div>
+                      <div class="playerType"><img src="img/robot3.jpg"><p class="imageLabel">CYBORG</p></div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="col-md-8" id="player1RightSide">
-                <div id="player1Model">
-                    <div class="card__prompt row">
-                    <div class="header">PLAYER 1 MODEL</div>
+            <div class="col-md-8" id="player1ModelRight">
+                <div id="player1Model" class="playSetUpCard">
+                    <div class="row">
+                    <div class="cardHeader">PLAYER 1 MODEL...</div>
                     <div class="playerModel"><img src="img/robot4.jpg">
                         <div class="modelDetailsContainer">
                             <h3>MODEL 1</h3>
@@ -109,10 +105,51 @@
                             </div>
                         </div>
                     </div>
-                    <div id="p1ModelNextArrow">></div>
+                    <a id="p1ModelNextArrow" class="nextArrow">></a>
                 </div>
             </div>
             </div>
+
+
+            <div class="row">
+              <div class="col-md-6" id="player1WeaponsLeft">
+                  <div id="player1Weapons" class="playSetUpCard">
+                      <div class="card__prompt row">
+                      <div class="cardHeader">PLAYER 1: GO GO GADGET...</div>
+                        <div class="col-md-6">
+                          <div class="playerWeapon">Weapon 1</div>
+                          <div class="playerWeapon">Weapon 2</div>
+                          <div class="playerWeapon">Weapon 3</div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="playerWeapon">Weapon 4</div>
+                          <div class="playerWeapon">Weapon 5</div>
+                          <div class="playerWeapon">Weapon 6</div>
+                        </div>
+                      <a id="p1WeaponsNextArrow" class="nextArrow">></a>
+                  </div>
+              </div>
+              </div>
+
+              <div class="col-md-6" id="player1ModificationsRight">
+                  <div id="player1Modifications" class="playSetUpCard">
+                      <div class="cardHeader">PLAYER 1: SPICE UP YOUR LIFE...</div>
+                        <div class="col-md-6">
+                          <div class="playerModification">Mod 1</div>
+                          <div class="playerModification">Mod 2</div>
+                          <div class="playerModification">Mod 3</div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="playerModification">Mod 4</div>
+                          <div class="playerModification">Mod 5</div>
+                          <div class="playerModification">Mod 6</div>
+                        </div>
+                      <a id="p1ModificationsNextArrow" class="nextArrow">FINISH PLAYER 1 ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
 
 
         </section>
@@ -123,5 +160,6 @@
   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
   <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="dist/bundle.js"></script>
+  <script src="javascripts/DOMAppend.js"></script>
 </body>
 </html>

@@ -1,156 +1,156 @@
 body {
-  font-family: 'Iceberg', cursive;
   background: url(../img/battledome.jpg) center center fixed;
   background-size:cover;
   margin-left: 10px;
+  font-family: 'Iceberg', cursive;
+  color: white;
+}
+
+a, a:hover{
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  cursor: pointer;
 }
 
 
-/*****************       LOGO       *******************/
-#logobar {
-  display: inline-block;
-  color: white;
+
+/**********************  TOGGLE CLASSES  ***********************/
+.disabled {   
+  opacity: 0.5;
+  pointer-events: none;
+} /*Cards displayed on the same page but are not active*/
+
+.selected {  
+  box-shadow: 0 0 5px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 15px rgba(255,255,255,1) , 0 0 20px #ff00de , 0 0 35px #ff00de , 0 0 40px #ff00de , 0 0 50px #ff00de ;
+} /*Selections that have been clicked on by user*/
+
+
+
+
+/**********************       LOGO       ************************/
+#logoBar {
+    text-align: center;
 }
 
 .logoMain {
   font-family: 'Black Ops One', cursive;
-  color: white;
   font-size: 40px;
-  text-align: center;
 }
 
 .logoSub {
-  color: white;
   font-size: 40px;
-  text-align: center;
 }
 
-/***************** PLAYER 1 PAGE 1 *******************/
-#player1Name {
+
+
+
+/***********  PLAYER SETUP CARDS: Base Formatting  **************/
+.playSetUpCard {
+  position: relative;
   margin-top: 30px;
-  height: 140px;
+  padding-left: 15px;
   background-color: black;
   box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
 }
 
-#player1Name .header{
+.cardHeader {
+  margin: 15px 30px 0;
   font-size: 30px;
-  color: white;
-  width: 80%;
-  margin: .3em 0 0 20%;
+}
+
+.imageLabel {
+  margin: 5px 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+.nextArrow {
+  font-size: 60px;
+}
+
+.nextArrow:hover {
+  text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+}
+
+
+
+
+/*********** PAGE 1: Card 1: Player Name *************/
+#player1Name {
+  height: 140px;
 }
 
 #p1NameInput {
-  width: 80%;
-  margin: .5em 0 0 7%;
+  width: 70%;
+  margin: 15px 0 0 30px;
+  padding-left: 20px;
   font-size: 24px;
   color: blue;
 }
 
 #p1NameNextArrow {
-  font-size: 60px;
-  color: white;
-  position: relative;
-  left: 89%;
-  top: -1.3em;
-}
-
-#p1NameNextArrow:hover {
-  text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+  position: absolute;
+  top: 20px;
+  right: 10px;
 }
 
 
+/*********** PAGE 1: Card 2: Player Type *************/
 #player1Type {
-  margin-top: 38px;
   height: 300px;
-  font-size: 20px;
-  background-color: black;
-  color: white;
-  display: block;
-  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
-}
-
-#player1Type .header{
-  font-size: 30px;
-  color: white;
-  width: 80%;
-  margin: .3em 0 0 20%;
-}
-
-#player1Type p{
-  margin: 5px 0;
-  text-align: center;
-}
-
-
-#player1Type img {
-  margin: 2em 15% 0 15%;
-  display: block;
-  width: 70%;
 }
 
 .playerType {
-  margin-top: .5em;
+  margin: 30px 5px 0 25px;
   display: inline-block;
-  width: 30%;
+  width: 20%;
+}
+
+#player1Type img {
+  margin: 0;
+  display: block;
+  width: 100%;
 }
 
 #p1TypeNextArrow {
-  font-size: 60px;
-  color: white;
-  position: relative;
-  left: 89%;
-  top: -2em;
-}
-
-#p1TypeNextArrow:hover {
-  text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+  position: absolute;
+  top: 100px;
+  right: 10px;
 }
 
 
+/*********** PAGE 1: Card 3: Player Model **************/
 
 #player1Model {
-  margin-top: 30px;
-  height: 480px;
+  height: 470px;
   font-size: 20px;
-  background-color: black;
-  color: white;
-  display: block;
-  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
-}
-
-#player1Model .header{
-  font-size: 30px;
-  color: white;
-  width: 80%;
-  margin: .3em 0 0 20%;
 }
 
 .playerModel {
-  margin: 30px 5% 0 5%;
+  margin: 30px 30px 0;
   display: inline-block;
   width: 85%;
-  background: rgba(255, 255, 255, .2);
+  background: rgba(13, 222, 255, .2);
 }
 
 .modelDetailsContainer {
   display: inline-block;
   width: 66%;
-  margin: 0 5%;
   float: right;
 }
 
 #player1Model img {
-  margin: 2%;
+  margin: 15px 30px;
   display: inline-block;
   float: left;
   width: 15%;
 }
 
 .playerModel .modelStat h3 {
+  margin: 4px;
   display: inline-block;
   font-size: 24px;
-  margin: 4px;
 }
 
 .playerModel .modelStat .progress {
@@ -160,13 +160,50 @@ body {
 }
 
 #p1ModelNextArrow {
-  font-size: 60px;
-  color: white;
-  position: relative;
-  left: 94%;
-  top: -4em;
+  position: absolute;
+  top: 225px;
+  right: 10px;
 }
 
-#p1ModelNextArrow:hover {
-  text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+
+/*********** PAGE 2: Card 1: Player Weapon **************/
+#player1Weapons {
+  height: 470px;
+}
+
+
+.playerWeapon {
+  width: 70%;
+  margin: 15%;
+  padding: 10px;
+  background: rgba(13, 222, 255, .2);
+  font-size: 24px;
+  text-align: center;
+}
+
+#p1WeaponsNextArrow {
+  position: absolute;
+  top: 375px;
+  right: 10px;
+}
+
+
+/*********** PAGE 2: Card 2: Player Modifications **************/
+#player1Modifications {
+  height: 470px;
+}
+
+.playerModification {
+  width: 70%;
+  margin: 15%;
+  padding: 10px;
+  background: rgba(13, 222, 255, .2);
+  font-size: 24px;
+  text-align: center;
+}
+
+#p1ModificationsNextArrow {
+  position: absolute;
+  top: 375px;
+  right: 10px;
 }
