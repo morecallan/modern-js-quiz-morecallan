@@ -1,0 +1,44 @@
+/*****************       LOGO       *******************/
+#logobar {
+  background-color: slategray;
+  display: inline-block;
+}
+
+.logoMain {
+  font-family: 'Black Ops One', cursive;
+}
+
+.logoSub {
+  font-family: 'Iceberg', cursive;
+}
+
+/***************** PLAYER 1 PAGE 1 *******************/
+#player1Name {
+  margin: 0;
+  height: 120px;
+  background-color: black;
+}
+
+#player1Name .header{
+  font-family: 'Iceberg', cursive;
+  font-size: 30px;
+  color: white;
+  width: 80%;
+  margin: .3em 0 0 20%;
+}
+
+#p1NameInput {
+  width: 80%;
+  margin: .5em 0 0 7%;
+  font-family: 'Iceberg', cursive;
+  font-size: 24px;
+}
+
+#p1NameNextArrow {
+  font-family: 'Iceberg', cursive;
+  font-size: 60px;
+  color: white;
+  position: relative;
+  left: 89%;
+  top: -1.3em;
+}

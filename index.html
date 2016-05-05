@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Robot Battledome!</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=VT323|Black+Ops+One|Rubik+Mono+One|Iceberg' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/animate.min.css">
   <link rel="stylesheet" type="text/css" href="styles/quiz.css">
@@ -17,7 +17,40 @@
 
 
 <body>
-    
+    <article id="game-container">
+        <section id="p1setup" class="page">
+            <!-- When your user interface first loads, provide the user with buttons so that one specific robot model can be chosen as Player 1. -->
+            <div class="row logobar">
+                <div class="col-md-4"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"><h2 class="logoSub">PLAYER 1 SETUP</h2></div>
+            </div>
+            <div class="col-md-4">
+            <div id="player1Name">
+                <div class="card__prompt row">
+                <div class="header">PLAYER 1 NAME</div>
+                <div class="field">
+                  <input type="text" autofocus="true" id="p1NameInput" class="field__textinput" >
+                </div>
+                <div id="p1NameNextArrow">></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="card__prompt row">
+                <div class="header">PLAYER 1 SETUP</div>
+                <div class="field">
+                  <input type="text" autofocus="true" id="p1-name" class="field__textinput" >
+                </div>
+            </div>
+            </div>
+            </div>
+
+
+
+        </section>
+    </article>
+
 
 
   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
