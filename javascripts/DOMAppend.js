@@ -12,49 +12,50 @@ var $ = require("jquery");
 var p1stats = {};
 var p2stats = {};
 
-
+displayPlayerSetUp(p1stats, 1);
 
 /********************************************
 **          PLAYER 1 SETUP - Cards         **
 ********************************************/
-function displayPlayer1SetUp() {
+function displayPlayerSetUp(playerTitle, player) {
+
     //Step 1: Display Only Player 1 SetUp Name
     $(".playSetUpCard").hide();
-    $("#player1Name").show();
-    $("#p1NameNextArrow").hide();
+    $("#player" + player + "Name").show();
+    $("#p" + player + "NameNextArrow").hide();
 
     //Step 2: When User Starts Typing Name, Show Arrow
-    $("#p1NameInput").keyup(function(){
-        if($("#p1NameInput").val() !== "") {
-           $("#p1NameNextArrow").show(); 
+    $("#p" + player + "NameInput").keyup(function(){
+        if($("#p" + player + "NameInput").val() !== "") {
+           $("#p" + player + "NameNextArrow").show(); 
         }
     });
 
     //Step 3: When User Hits Arrow, Display Next Card
-    $("#p1NameNextArrow").click(function(){
-        p1stats.playerName = $("#p1NameInput").val();
-        $("#player1Type").show();
-        $("#player1Type").addClass("animated slideInDown");
-        $("#p1TypeNextArrow").hide();
-        $("#player1Name").addClass("disabled");
+    $("#p" + player + "NameNextArrow").click(function(){
+        playerTitle.playerName = $("#p" + player + "NameInput").val();
+        $("#player" + player + "Type").show();
+        $("#player" + player + "Type").addClass("animated slideInDown");
+        $("#p" + player + "TypeNextArrow").hide();
+        $("#player" + player + "Name").addClass("disabled");
     });
 
     //Step 4: When User Selects a Type, Show Arrow
     $(".playerType").click(function(e){
         $(".playerType").removeClass("selected");
         $(e.currentTarget).addClass("selected");
-        $("#p1TypeNextArrow").show(); 
+        $("#p" + player + "TypeNextArrow").show(); 
     });
 
     //Step 5: When User Hits Arrow, Display Next Card
-    $("#p1TypeNextArrow").click(function(){
-        p1stats.type = $("div.playerType.selected")[0].id;
-        populateModels(p1stats.type);
-        $("#player1Model").show();
-        $("#player1Model").addClass("animated rotateInUpLeft");
-        $("#p1ModelNextArrow").hide();
-        $("#player1Type").removeClass("animated slideInDown");
-        $("#player1Type").addClass("disabled");
+    $("#p" + player + "TypeNextArrow").click(function(){
+        playerTitle.type = $("div.playerType.selected")[0].id;
+        populateModels(playerTitle.type);
+        $("#player" + player + "Model").show();
+        $("#player" + player + "Model").addClass("animated rotateInUpLeft");
+        $("#p" + player + "ModelNextArrow").hide();
+        $("#player" + player + "Type").removeClass("animated slideInDown");
+        $("#player" + player + "Type").addClass("disabled");
     });
 
     //See below for steps 6 and 7. They need to happen when DOM(Models) is dynamically populated.
@@ -265,7 +266,7 @@ function calculateIntelligenceBonusPercent(intelligenceBonusofSpecificModel){
 **             Browserify Exports          **
 ********************************************/
 module.exports = {
-  displayPlayer1SetUp,
+  displayPlayerSetUp,
   getTypeInfoFromJSON,
   getWeaponsInfoFromJSON,
   getModificationsInfoFromJSON,

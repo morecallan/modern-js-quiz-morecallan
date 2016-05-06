@@ -76,6 +76,68 @@
             </div>
 
         </section>
+        <section id="p2setup" class="page">
+            <!-- When your user interface first loads, provide the user with buttons so that one specific robot model can be chosen as Player 1. -->
+            <div class="row" id="logoBar">
+                <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5"><h2 class="logoSub">PLAYER 2 SETUP</h2></div>
+            </div>
+
+            <div class="col-md-4" id="player2NameAndTypeLeft">
+                <div id="player2Name" class="playSetUpCard">
+                  <div class="row">
+                    <div class="cardHeader">PLAYER 2 NAME...</div>
+                    <a id="p2NameNextArrow" class="nextArrow">></a>
+                    <div class="field">
+                      <input type="text" autofocus="true" id="p2NameInput" class="field__textinput" >
+                    </div>
+                  </div>
+                </div>
+
+                <div id="player2Type" class="playSetUpCard">
+                    <div class="row">
+                      <div class="cardHeader">PLAYER 2 TYPE...</div>
+                      <a id="p2TypeNextArrow" class="nextArrow">></a>
+                      <div class="playerType" id="Drone"><img src="img/drone0.jpg"><p class="imageLabel">DRONE</p></div>
+                      <div class="playerType" id="Bipedal"><img src="img/bipedal0.jpg"><p class="imageLabel">BIPEDAL</p></div>
+                      <div class="playerType" id="Cyborg"><img src="img/cyborg0.jpg"><p class="imageLabel">CYBORG</p></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-8" id="player2ModelRight">
+                <div id="player2Model" class="playSetUpCard">
+                    <div class="row">
+                    <div class="cardHeader">PLAYER 2 MODEL...</div>
+                    <div id="modelHolder"></div>
+                    <a id="p2ModelNextArrow" class="nextArrow">></a>
+                </div>
+            </div>
+            </div>
+
+
+            <div class="col-md-6" id="player2WeaponsLeft">
+                <div id="player2Weapons" class="playSetUpCard">
+                    <div class="card__prompt row">
+                    <div class="cardHeader">PLAYER 2: GO GO GADGET...</div>
+                    <div id="weaponsHolder"></div>
+                    <a id="p2WeaponsNextArrow" class="nextArrow">></a>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-md-6" id="player2ModificationsRight">
+                <div id="player2Modifications" class="playSetUpCard">
+                    <div class="cardHeader">PLAYER 2: SPICE UP YOUR LIFE...</div>
+                    <div id="modificationsHolder"></div>
+                    <a id="p2ModificationsNextArrow" class="nextArrow">FINISH PLAYER 2 ></a>
+                </div>
+              </div>
+            </div>
+
+        </section>
     </article>
 
 

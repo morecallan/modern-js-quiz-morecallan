@@ -207,3 +207,141 @@ a, a:hover{
   top: 375px;
   right: 10px;
 }
+
+
+
+
+
+
+
+/*********** PAGE 1: Card 1: Player Name *************/
+#player2Name {
+  height: 140px;
+}
+
+#p2NameInput {
+  width: 70%;
+  margin: 15px 0 0 30px;
+  padding-left: 20px;
+  font-size: 24px;
+  color: blue;
+}
+
+#p2NameNextArrow {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+
+/*********** PAGE 1: Card 2: Player Type *************/
+#player2Type {
+  height: 300px;
+}
+
+.playerType {
+  margin: 30px 5px 0 25px;
+  display: inline-block;
+  width: 20%;
+}
+
+#player2Type img {
+  margin: 0;
+  display: block;
+  width: 100%;
+}
+
+#p2TypeNextArrow {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+}
+
+
+/*********** PAGE 1: Card 3: Player Model **************/
+
+#player2Model {
+  height: 470px;
+  font-size: 20px;
+}
+
+.playerModel {
+  margin: 30px 30px 0;
+  display: inline-block;
+  width: 85%;
+  background: rgba(13, 222, 255, .2);
+}
+
+.modelDetailsContainer {
+  display: inline-block;
+  width: 66%;
+  float: right;
+}
+
+#player2Model img {
+  margin: 15px 30px;
+  display: inline-block;
+  float: left;
+  width: 15%;
+}
+
+.playerModel .modelStat h3 {
+  margin: 4px;
+  display: inline-block;
+  font-size: 24px;
+}
+
+.playerModel .modelStat .progress {
+  display: inline-block;
+  width: 60%;
+  margin: auto;
+}
+
+#p2ModelNextArrow {
+  position: absolute;
+  top: 225px;
+  right: 10px;
+}
+
+
+/*********** PAGE 2: Card 1: Player Weapon **************/
+#player2Weapons {
+  height: 470px;
+}
+
+
+.playerWeapon {
+  width: 70%;
+  margin: 15%;
+  padding: 10px;
+  background: rgba(13, 222, 255, .2);
+  font-size: 24px;
+  text-align: center;
+}
+
+#p2WeaponsNextArrow {
+  position: absolute;
+  top: 375px;
+  right: 10px;
+}
+
+
+/*********** PAGE 2: Card 2: Player Modifications **************/
+#player2Modifications {
+  height: 470px;
+}
+
+.playerModification {
+  width: 70%;
+  margin: 15%;
+  padding: 10px;
+  background: rgba(13, 222, 255, .2);
+  font-size: 24px;
+  text-align: center;
+}
+
+#p2ModificationsNextArrow {
+  position: absolute;
+  top: 375px;
+  right: 10px;
+}

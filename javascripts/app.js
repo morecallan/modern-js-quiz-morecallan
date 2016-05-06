@@ -17,8 +17,6 @@ var robotP1 = new robot.Robots.Player();
 var robotP2 = new robot.Robots.Player();
 
 
-DOM.displayPlayer1SetUp();
-
 
 
 module.exports = {
