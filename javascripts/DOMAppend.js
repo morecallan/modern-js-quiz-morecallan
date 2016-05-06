@@ -198,5 +198,7 @@ function calculateIntelligenceBonusPercent(intelligenceBonusofSpecificModel){
 ********************************************/
 module.exports = {
   displayPlayer1SetUp,
-  getTypeInfoFromJSON
+  getTypeInfoFromJSON,
+  p1stats,
+  p2stats
 };
