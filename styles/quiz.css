@@ -345,3 +345,17 @@ a, a:hover{
   top: 375px;
   right: 10px;
 }
+
+/***********   PLAYER DISPLAY: Ready to battle?   **************/
+.playerDisplay {
+  background-color: black;
+  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+  text-align: center;
+}
+
+
+
+.playerDisplay img{
+  width: 40%;
+  margin: 4% 10% 0 10%;
+}

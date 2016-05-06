@@ -15,11 +15,12 @@ var p2stats = {};
 displayPlayerSetUp(p1stats, 1);
 
 /********************************************
-**          PLAYER 1 SETUP - Cards         **
+**           PLAYER SETUP - Cards          **
 ********************************************/
 function displayPlayerSetUp(playerTitle, player) {
 
     //Step 1: Display Only Player 1 SetUp Name
+    $("#playerViews").hide();
     $(".playSetUpCard").hide();
     $("#player" + player + "Name").show();
     $(".logoBar").hide();
@@ -77,6 +78,7 @@ function playerModelClickEvents(playerTitle, player) {
     //Step 7: When User Hits Arrow, Display Next Card
     $("#p"+ player + "ModelNextArrow").click(function(){
         playerTitle.model = $("div.playerModel.selected")[0].id;
+        playerTitle.image = $("div.playerModel.selected")[0].firstElementChild.outerHTML;
         populateWeapons(playerTitle, player);
         $("#player"+ player + "NameAndTypeLeft").hide();
         $("#player"+ player + "ModelRight").hide();
@@ -119,18 +121,20 @@ function playerModificationsClickEvents(playerTitle, player){
     //Step 11: When User Hits Arrow, Display P2 Setup
     $("#p"+ player + "ModificationsNextArrow").click(function(){
         $(".playSetUpCard").hide();
-        playerTitle.modifications = $("div.playerModification.selected")[0].id;
+        playerTitle.modification = $("div.playerModification.selected")[0].id;
         player++;
-        console.log("p1stats", p1stats);
-        console.log("p2stats", p2stats);
         if(player < 3) {
             displayPlayerSetUp(p2stats, player);
+        } else {
+            $("#p"+ player - 1 + "setup").hide();
+            populatePlayerDisplay();
+            $("#playerViews").show();
         }
     });
 }
 
 /********************************************
-**       PLAYER 1 SETUP - Populate Dom     **
+**        PLAYER SETUP - Populate Dom      **
 ********************************************/
 var modelDataFromJSON = null;
 var weaponsDataFromJSON = null;
@@ -139,7 +143,10 @@ var healthMinForAllModels = [];
 var strengthBonusForAllModels = [];
 var intelligenceBonusForAllModels = [];
 
-//Populating Model Card
+
+
+/////************        Populate Models Card        ************/////
+///////////////////////////////////////////////////////////////////////
 function getTypeInfoFromJSON(typeDataFromAJAX) {
     modelDataFromJSON = typeDataFromAJAX;
 }
@@ -180,7 +187,9 @@ function populateModels(robotType, playerTitle, player) {
     playerModelClickEvents(playerTitle, player);
 }
 
-//Populating Weapons Card
+
+/////************        Populate Weapons Card        ************/////
+///////////////////////////////////////////////////////////////////////
 function getWeaponsInfoFromJSON(typeDataFromAJAX) {
     weaponsDataFromJSON = typeDataFromAJAX;
 }
@@ -211,7 +220,8 @@ function populateWeapons(playerTitle, player) {
     playerWeaponsClickEvents(playerTitle, player);
 }
 
-//Populating Modifications Card
+/////************     Populate Modifications Card     ************/////
+///////////////////////////////////////////////////////////////////////
 function getModificationsInfoFromJSON(typeDataFromAJAX) {
     modificationsDataFromJSON = typeDataFromAJAX;
 }
@@ -264,6 +274,27 @@ function calculateIntelligenceBonusPercent(intelligenceBonusofSpecificModel){
     var intelligenceBonusPercent = (intelligenceBonusofSpecificModel / highestIntelligenceOfAllModels) * 100 + "%";
     return intelligenceBonusPercent;
 }
+
+
+
+/********************************************
+**       PLAYER DISPLAY - Populate Dom     **
+********************************************/
+
+function populatePlayerDisplay(){
+    var robot1String = "";
+    var robot2String = "";
+    
+    robot1String += `<div class="playerDisplay">${p1stats.image}<p class="imageLabel">${p1stats.playerName}</p><p>TYPE: ${p1stats.type} </p><p>MODEL: ${p1stats.model}</p><p>WEAPON: ${p1stats.weapon}</p><p>MODIFICATION: ${p1stats.modification}</p></div>`;
+    robot2String += `<div class="playerDisplay">${p2stats.image}<p class="imageLabel">${p2stats.playerName}</p><p>TYPE: ${p2stats.type} </p><p>MODEL: ${p2stats.model}</p><p>WEAPON: ${p2stats.weapon}</p><p>MODIFICATION: ${p2stats.modification}</p></div>`;
+
+
+    $("#p1Holder").html(robot1String);
+    $("#p2Holder").html(robot2String);
+}
+
+
+
 
 /********************************************
 **             Browserify Exports          **
