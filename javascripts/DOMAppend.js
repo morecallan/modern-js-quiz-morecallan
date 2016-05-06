@@ -6,8 +6,13 @@
 ********************************************/
 var $ = require("jquery"),
     modifications = require("./modifications.js"),
-    types = require("./types.js"),
     weapons = require("./weapons.js");
+
+/********************************************
+** Empty Player Objects for collecting data**
+********************************************/
+var p1stats = {};
+var p2stats = {};
 
 /********************************************
 **          PLAYER 1 SETUP - Cards         **
@@ -27,6 +32,7 @@ function displayPlayer1SetUp() {
 
     //Step 3: When User Hits Arrow, Display Next Card
     $("#p1NameNextArrow").click(function(){
+        p1stats.playerName = $("#p1NameInput").val();
         $("#player1Type").show();
         $("#player1Type").addClass("animated slideInDown");
         $("#p1TypeNextArrow").hide();
@@ -42,6 +48,8 @@ function displayPlayer1SetUp() {
 
     //Step 5: When User Hits Arrow, Display Next Card
     $("#p1TypeNextArrow").click(function(){
+        p1stats.type = $("div.playerType.selected")[0].id;
+        populateModels(p1stats.type);
         $("#player1Model").show();
         $("#player1Model").addClass("animated rotateInUpLeft");
         $("#p1ModelNextArrow").hide();
@@ -58,6 +66,8 @@ function displayPlayer1SetUp() {
 
     //Step 7: When User Hits Arrow, Display Next Card
     $("#p1ModelNextArrow").click(function(){
+        // p1stats.model = $("div.playerModel.selected").id();
+        // populateWeapons();
         $("#player1NameAndTypeLeft").hide();
         $("#player1ModelRight").hide();
         $("#player1Weapons").show();
@@ -74,6 +84,7 @@ function displayPlayer1SetUp() {
 
     //Step 9: When User Hits Arrow, Display Next Card
     $("#p1WeaponsNextArrow").click(function(){
+        // p1stats.weapon = $("div.playerWeapon.selected").id();
         $("#player1Modifications").show();
         $("#player1Modifications").addClass("animated rotateInUpLeft");
         $("#p1ModificationsNextArrow").hide();
@@ -87,18 +98,97 @@ function displayPlayer1SetUp() {
         $(e.currentTarget).addClass("selected");
         $("#p1ModificationsNextArrow").show(); 
     });
+
+    //Step 10: When User Hits Arrow, Display P2 Setup
+    $("#p1ModificationsNextArrow").click(function(){
+        // p1stats.modifications = $("div.playerModification.selected").id();
+        $("#player1Modifications").show();
+        $("#player1Modifications").addClass("animated rotateInUpLeft");
+        $("#p1ModificationsNextArrow").hide();
+        $("#player1Weapons").removeClass("animated slideInDown");
+        $("#player1Weapons").addClass("disabled");
+    });
 }
 
 /********************************************
 **       PLAYER 1 SETUP - Populate Dom     **
 ********************************************/
-function populatePlayer1SetUp() {
-    
+var modelDataFromJSON = null;
+var healthMinForAllModels = [];
+var strengthBonusForAllModels = [];
+var intelligenceBonusForAllModels = [];
+
+
+function getTypeInfoFromJSON(typeDataFromAJAX) {
+    modelDataFromJSON = typeDataFromAJAX;
+}
+
+function decideWhichTypeInfoToPassToPopulateModels(robotType){
+    let dataToPassToPopulateModels = [];
+    modelDataFromJSON.types.forEach(($type) => {
+        if ($type.prototype !== null){
+            healthMinForAllModels.push($type.healthMin);
+            strengthBonusForAllModels.push($type.strengthModifier);
+            intelligenceBonusForAllModels.push($type.intelligenceModifier);
+        }
+        if ($type.prototype === robotType) {
+            dataToPassToPopulateModels.push($type);
+        }
+    });
+    return dataToPassToPopulateModels;
+}
+
+function populateModels(robotType) {
+    var models = decideWhichTypeInfoToPassToPopulateModels(robotType);
+    var buildModelDOM = "";
+    models.forEach(($model) => {
+        var healthBonusPercent = calculateHealthBonusPercent($model.healthMin);
+        var strengthBonusPercent = calculateStrengthBonusPercent($model.strengthModifier);
+        var intellegenceBonusPercent = calculateIntelligenceBonusPercent($model.intelligenceModifier);
+        buildModelDOM += `<div class="playerModel">
+                            <img src=${$model.image}><div class="modelDetailsContainer">
+                            <h3>${$model.id} Bonuses</h3><div class="modelStat">
+                            <h3>HEALTH:</h3><div class="progress"><div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+                            style="width: ${healthBonusPercent}"><span class="sr-only">20% Complete</span></div></div></div><div class="modelStat">
+                            <h3>STRENGTH:</h3><div class="progress"><div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" 
+                            style="width: ${strengthBonusPercent}"><span class="sr-only">20% Complete</span></div></div></div><div class="modelStat">
+                            <h3>EVASION:</h3><div class="progress"><div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" 
+                            style="width:  ${intellegenceBonusPercent}"><span class="sr-only">20% Complete</span></div></div></div></div></div>`;
+    });
+    $("#modelHolder").html(buildModelDOM);
+}
+
+
+
+/////******   Helper Functions   ******/////
+function getMaxOfArray(numArray) {
+  return Math.max.apply(null, numArray);
+}
+
+function calculateHealthBonusPercent(healthMinOfSpecificModel) {
+    console.log("healthMinOfSpecificModel", healthMinOfSpecificModel);
+    var highestHealthMinOfAllModels = getMaxOfArray(healthMinForAllModels);
+    console.log("highestHealthMinOfAllModels", highestHealthMinOfAllModels);
+    var healthMinPercent = (healthMinOfSpecificModel / highestHealthMinOfAllModels) * 100 + "%";
+    return healthMinPercent;
+}
+
+function calculateStrengthBonusPercent(strengthBonusofSpecificModel){
+    var highestStrengthOfAllModels = getMaxOfArray(strengthBonusForAllModels);
+    var strengthBonusPercent = (strengthBonusofSpecificModel / highestStrengthOfAllModels) * 100 + "%";
+    return strengthBonusPercent;
+}
+
+function calculateIntelligenceBonusPercent(intelligenceBonusofSpecificModel){
+    var highestIntelligenceOfAllModels = getMaxOfArray(intelligenceBonusForAllModels);
+    var intelligenceBonusPercent = (intelligenceBonusofSpecificModel / highestIntelligenceOfAllModels) * 100 + "%";
+    return intelligenceBonusPercent;
 }
 
 /********************************************
 **             Browserify Exports          **
 ********************************************/
 module.exports = {
-  displayPlayer1SetUp
+  displayPlayer1SetUp,
+  getTypeInfoFromJSON
 };

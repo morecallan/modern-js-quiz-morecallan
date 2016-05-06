@@ -4,7 +4,8 @@
 **          Browserify Dependencies        **
 ********************************************/
 var $ = require("jquery"),
-    robot = require("./robot.js");
+    DOM = require("./DOMAppend.js"),
+    utils = require("./utils.js");
 
 
 
@@ -32,7 +33,42 @@ RobotTypes.PlayerTypes = function() {
 *****             - Cyborg              *****
 ********************************************/
 
+let _types = new Map();
 
+let typesXHR = function() {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: "json/types.json"
+    }).done(function(data) {
+      resolve(data);
+    }).then(function(data){
+        DOM.getTypeInfoFromJSON(data);
+        parseXHRIntoPrototype(data);
+    }).fail(function(xhr, status, error) {
+      reject(error);
+
+    });
+  });
+};
+
+let parseXHRIntoPrototype = function(data) {
+    data.types.forEach(($type) => {
+        //Define prototype for each robot model
+        let prototypeForObject = ($type.prototype === null) ? {} : _types.get($type.prototype);
+        
+        let ModelType = Object.create(prototypeForObject);
+
+      // Add all properties from JSON to new object
+          Object.keys($type).filter((prop) => prop !== "prototype").forEach((property) => {
+            utils.defineProperty(ModelType, property, $type[property]);
+          });
+
+          // Add new profession to the Map
+          _types.set($type.id, ModelType);
+    });
+};
+
+typesXHR();
 
 /****************** DRONES *****************/
 /*******   Drone Type Base Object  *********/
@@ -40,6 +76,7 @@ RobotTypes.Drone = function () {
     this.name = "Drone";
     this.robotType = "Drone";
     this.healthMax = 150;
+    
     this.allowedModels = ["DJPhantom", "Bebop"];
 
     this.img = "../img/drone0.jpg";
@@ -48,23 +85,25 @@ RobotTypes.Drone.prototype = new RobotTypes.PlayerTypes();
 
 
 /***   Drone Models: DJ PHANTOM, Bebop   ***/
-RobotTypes.DJPhantom = () => {
+RobotTypes.DJPhantom = function() {
 // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 40 + 110);
     this.health = this.originalHealth;
-
+    
+    this.name = "DJ Phantom";
     this.img = "../img/drone1.jpg";
 };
 RobotTypes.DJPhantom.prototype = new RobotTypes.Drone();
 
-RobotTypes.Bebop = () => {
+RobotTypes.Bebop = function() {
 // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 50 + 100);
     this.health = this.originalHealth;
 
+    this.name = "Bebop";
     this.img = "../img/drone2.jpg";
 };
-RobotTypes.DJPhantom.prototype = new RobotTypes.Drone();
+RobotTypes.Bebop.prototype = new RobotTypes.Drone();
 /*******************************************/
 
 
@@ -83,7 +122,7 @@ RobotTypes.Bipedal.prototype = new RobotTypes.PlayerTypes();
 
 
 /**  Bipedal Models: Chicken Walker, HUBO **/
-RobotTypes.ChickenWalker = () => {
+RobotTypes.ChickenWalker = function() {
 // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 20 + 90);
     this.health = this.originalHealth;
@@ -92,7 +131,7 @@ RobotTypes.ChickenWalker = () => {
 };
 RobotTypes.ChickenWalker.prototype = new RobotTypes.Bipedal();
 
-RobotTypes.HUBO = () => {
+RobotTypes.HUBO = function() {
 // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 30 + 80);
     this.health = this.originalHealth;
@@ -118,7 +157,7 @@ RobotTypes.Cyborg = function (){
 RobotTypes.Cyborg.prototype = new RobotTypes.PlayerTypes();
 
 /** Cyborg Models: InspectorGadget, BionicWoman **/
-RobotTypes.InspectorGadget = () => {
+RobotTypes.InspectorGadget = function() {
 // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 50 + 50);
     this.health = this.originalHealth;
@@ -127,7 +166,7 @@ RobotTypes.InspectorGadget = () => {
 };
 RobotTypes.InspectorGadget.prototype = new RobotTypes.Cyborg();
 
-RobotTypes.BionicWoman = () => {
+RobotTypes.BionicWoman = function() {
 // LR4: Give each robot model a different range of health
     this.originalHealth = Math.floor(Math.random() * 60 + 40);
     this.health = this.originalHealth;
@@ -145,5 +184,6 @@ RobotTypes.BionicWoman.prototype = new RobotTypes.Cyborg();
 **             Browserify Exports          **
 ********************************************/
 module.exports = {
-  RobotTypes
+  RobotTypes,
+  _types
 };

@@ -32,21 +32,51 @@ Robots.Player  = function() {
   this.modification = null;
   this.weapon = null;
 
-  this.originalHealth = null;
-  this.health = null;
+  this.originalHealth = 0;
+  this.health = 0;
+
+  this.strength = 0;
+
+  this.evasion = 0;
+
+  this.intelligence = 0;
 };
 
 Robots.Player.prototype.setName = (newName)  => {
   this.playerName = newName;
 };
 
-Robots.Player.prototype.setType = (newType)  => {
-  this.class = new types.RobotTypes[newType]();
-};
-
 Robots.Player.prototype.setModel = (newModel)  => {
   this.model = new types.RobotTypes[newModel]();
 };
+
+
+Robots.Player.prototype.healthModification = (healthBonus) => {
+  this.health += healthBonus;
+};
+
+Robots.Player.prototype.strengthModification = (strengthBonus) => {
+  this.strength += strengthBonus;
+};
+
+Robots.Player.prototype.evasionModification = (evasionBonus) => {
+  this.evasion += evasionBonus;
+};
+
+Robots.Player.prototype.intelligenceModification = (intelligenceBonus) => {
+  this.intelligence += intelligenceBonus;
+};
+
+Robots.Player.prototype.setType = (newType)  => {
+  console.log("newType", newType);
+  this.type = new types.RobotTypes[newType]();
+
+  this.healthModification(newType.healthModifier);
+  this.strengthModification(newType.strengthModifier);
+  this.evasionModification(newType.evasionModifier);
+  this.intelligenceModification(newType.intelligenceModifier);
+};
+
 
 Robots.Player.prototype.setModifcation = (newModification)  => {
   this.modification = new modifications.RobotModifications[newModification]();
