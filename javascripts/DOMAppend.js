@@ -4,9 +4,7 @@
 /********************************************
 **          Browserify Dependencies        **
 ********************************************/
-var $ = require("jquery"),
-    modifications = require("./modifications.js");
-
+var $ = require("jquery");
 
 /********************************************
 ** Empty Player Objects for collecting data**
@@ -61,25 +59,7 @@ function displayPlayer1SetUp() {
 
     //See below for steps 6 and 7. They need to happen when DOM(Models) is dynamically populated.
     //See below for steps 8 and 9. They need to happen when DOM(Weapons) is dynamically populated.
-
- 
-
-    //Step 10: When User Selects a Modifictaion, Show Arrow
-    $(".playerModification").click(function(e){
-        $(".playerModification").removeClass("selected");
-        $(e.currentTarget).addClass("selected");
-        $("#p1ModificationsNextArrow").show(); 
-    });
-
-    //Step 11: When User Hits Arrow, Display P2 Setup
-    $("#p1ModificationsNextArrow").click(function(){
-        // p1stats.modifications = $("div.playerModification.selected").id();
-        $("#player1Modifications").show();
-        $("#player1Modifications").addClass("animated rotateInUpLeft");
-        $("#p1ModificationsNextArrow").hide();
-        $("#player1Weapons").removeClass("animated slideInDown");
-        $("#player1Weapons").addClass("disabled");
-    });
+    //See below for steps 10 and 11. They need to happen when DOM(Modifications) is dynamically populated.
 }
 
 function playerModelClickEvents() {
@@ -102,6 +82,7 @@ function playerModelClickEvents() {
     });
 }
 
+
 function playerWeaponsClickEvents(){
     //Step 8: When User Selects a Weapon, Show Arrow
     $(".playerWeapon").click(function(e){
@@ -113,6 +94,27 @@ function playerWeaponsClickEvents(){
     //Step 9: When User Hits Arrow, Display Next Card
     $("#p1WeaponsNextArrow").click(function(){
         p1stats.weapon = $("div.playerWeapon.selected")[0].id;
+        populateModifications();
+        $("#player1Modifications").show();
+        $("#player1Modifications").addClass("animated rotateInUpLeft");
+        $("#p1ModificationsNextArrow").hide();
+        $("#player1Weapons").removeClass("animated slideInDown");
+        $("#player1Weapons").addClass("disabled");
+    });
+}
+
+
+function playerModificationsClickEvents(){
+    //Step 10: When User Selects a Modifictaion, Show Arrow
+    $(".playerModification").click(function(e){
+        $(".playerModification").removeClass("selected");
+        $(e.currentTarget).addClass("selected");
+        $("#p1ModificationsNextArrow").show(); 
+    });
+
+    //Step 11: When User Hits Arrow, Display P2 Setup
+    $("#p1ModificationsNextArrow").click(function(){
+        p1stats.modifications = $("div.playerModification.selected")[0].id;
         console.log("p1stats", p1stats);
         $("#player1Modifications").show();
         $("#player1Modifications").addClass("animated rotateInUpLeft");
@@ -127,6 +129,7 @@ function playerWeaponsClickEvents(){
 ********************************************/
 var modelDataFromJSON = null;
 var weaponsDataFromJSON = null;
+var modificationsDataFromJSON = null;
 var healthMinForAllModels = [];
 var strengthBonusForAllModels = [];
 var intelligenceBonusForAllModels = [];
@@ -173,11 +176,11 @@ function populateModels(robotType) {
 }
 
 //Populating Weapons Card
-function getweaponsInfoFromJSON(typeDataFromAJAX) {
+function getWeaponsInfoFromJSON(typeDataFromAJAX) {
     weaponsDataFromJSON = typeDataFromAJAX;
 }
 
-function decideWhichTypeInfoToPassToPopulateWeapons(){
+function decideWhichWeaponInfoToPassToPopulateWeapons(){
     let dataToPassToPopulateWeapons = [];
     weaponsDataFromJSON.weapons.forEach(($weapon) => {
         if ($weapon.prototype !== null) {
@@ -188,7 +191,7 @@ function decideWhichTypeInfoToPassToPopulateWeapons(){
 }
 
 function populateWeapons() {
-    var weapons = decideWhichTypeInfoToPassToPopulateWeapons();
+    var weapons = decideWhichWeaponInfoToPassToPopulateWeapons();
     var boxCounter = 0;
     var buildWeaponDOM = `<div class="col-md-6">`;
     weapons.forEach(($weapon) => {
@@ -203,6 +206,37 @@ function populateWeapons() {
     playerWeaponsClickEvents();
 }
 
+//Populating Modifications Card
+function getModificationsInfoFromJSON(typeDataFromAJAX) {
+    modificationsDataFromJSON = typeDataFromAJAX;
+}
+
+function decideWhichModInfoToPassToPopulateModifications(){
+    let dataToPassToPopulateModifications = [];
+    modificationsDataFromJSON.modifications.forEach(($modification) => {
+        if ($modification.prototype !== null) {
+            dataToPassToPopulateModifications.push($modification);
+        }
+    });
+    console.log("dataToPassToPopulateModifications", dataToPassToPopulateModifications);
+    return dataToPassToPopulateModifications;
+}
+
+function populateModifications() {
+    var modifications = decideWhichModInfoToPassToPopulateModifications();
+    var boxCounter = 0;
+    var buildModDOM = `<div class="col-md-6">`;
+    modifications.forEach(($modification) => {
+        buildModDOM += `<div class="playerModification" id=${$modification.id}>${$modification.modName}</div>`;
+        if (boxCounter === 2) {
+            buildModDOM += `</div><div class="col-md-6">`;
+        }
+        boxCounter++;
+    });
+    buildModDOM += `</div>`;
+    $("#modificationsHolder").html(buildModDOM);
+    playerModificationsClickEvents();
+}
 
 /////******   Helper Functions   ******/////
 function getMaxOfArray(numArray) {
@@ -233,7 +267,8 @@ function calculateIntelligenceBonusPercent(intelligenceBonusofSpecificModel){
 module.exports = {
   displayPlayer1SetUp,
   getTypeInfoFromJSON,
-  getweaponsInfoFromJSON,
+  getWeaponsInfoFromJSON,
+  getModificationsInfoFromJSON,
   p1stats,
   p2stats
 };

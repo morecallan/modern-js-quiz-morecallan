@@ -35,7 +35,7 @@ let weaponsXHR = function() {
     }).done(function(data) {
       resolve(data);
     }).then(function(data){
-        DOM.getweaponsInfoFromJSON(data);
+        DOM.getWeaponsInfoFromJSON(data);
         // parseXHRIntoPrototype(data);
     }).fail(function(xhr, status, error) {
       reject(error);

@@ -3,7 +3,9 @@
 /********************************************
 **          Browserify Dependencies        **
 ********************************************/
-let $ = require("jquery");
+var $ = require("jquery"),
+    DOM = require("./DOMAppend.js"),
+    utils = require("./utils.js");
 
 
 
@@ -23,6 +25,57 @@ const RobotModifications = {};
 *****             - Failsafe            *****
 *****             - Raised Well         *****
 ********************************************/
+
+let _modifications = new Map();
+
+let modificationsXHR = function() {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: "json/modifications.json"
+    }).done(function(data) {
+      resolve(data);
+    }).then(function(data){
+        DOM.getModificationsInfoFromJSON(data);
+        // parseXHRIntoPrototype(data);
+    }).fail(function(xhr, status, error) {
+      reject(error);
+    });
+  });
+}();
+
+let parseXHRIntoPrototype = function(data) {
+    data.modifications.forEach(($modification) => {
+        //Define prototype for each robot weapon
+        let prototypeForObject = ($modification.prototype === null) ? {} : _modifications.get($modification.prototype);
+        
+        let Modification = Object.create(prototypeForObject);
+
+      // Add all properties from JSON to new object
+          Object.keys($modification).filter((prop) => prop !== "prototype").forEach((property) => {
+            utils.defineProperty(Modification, property, $modification[property]);
+          });
+
+          // Add new weapon to the Map
+          _modifications.set($modification.id, Modification);
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 RobotModifications.Modification = function() {
     this.name = 'base name';
     this.protection = null;
@@ -40,29 +93,29 @@ RobotModifications.Speedy = ()  => {
 };
 RobotModifications.Speedy.prototype = new RobotModifications.Modification();
 
-RobotModifications.ShieldBreaker = ()  => {
+RobotModifications.ShieldSmash = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
     this.protection = 0;
     this.increaseWeaponDamage = 90;
     this.evasion = 0;
 };
-RobotModifications.ShieldBreaker.prototype = new RobotModifications.Modification();
+RobotModifications.ShieldSmash.prototype = new RobotModifications.Modification();
 
-RobotModifications.BattleshipArmor = ()  => {
+RobotModifications.Armor = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
     this.protection = 90;
     this.increaseWeaponDamage = 0;
     this.evasion = 10;
 };
-RobotModifications.BattleshipArmor.prototype = new RobotModifications.Modification();
+RobotModifications.Armor.prototype = new RobotModifications.Modification();
 
-RobotModifications.StealthTechnology = ()  => {
+RobotModifications.StealthTech = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
     this.protection = 50;
     this.increaseWeaponDamage = 0;
     this.evasion = 50;
 };
-RobotModifications.StealthTechnology.prototype = new RobotModifications.Modification();
+RobotModifications.StealthTech.prototype = new RobotModifications.Modification();
 
 RobotModifications.Failsafe = ()  => {
 // Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).

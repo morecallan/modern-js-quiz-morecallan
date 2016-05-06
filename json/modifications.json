@@ -1,0 +1,52 @@
+{
+    "modifications": [{
+        "id": "Modification",
+        "modName": "Ain't no modification",
+        "protection": null,
+        "increaseWeaponDamage": null,
+        "evasion": null,
+        "prototype":null
+    }, {
+        "id": "Speedy",
+        "modName": "Speedy",
+        "protection": 10,
+        "increaseWeaponDamage": 0,
+        "evasion": 5,
+        "prototype": "Modification"
+    }, {
+        "id": "ShieldSmash",
+        "modName": "Shield Smash",
+        "protection": 0,
+        "increaseWeaponDamage": 90,
+        "evasion": 0,
+        "prototype": "Modification"
+    }, {
+        "id": "Armor",
+        "modName": "Armor",
+        "protection": 90,
+        "increaseWeaponDamage": 0,
+        "evasion": 10,
+        "prototype": "Modification"
+    }, {
+        "id": "StealthTech",
+        "modName": "Stealth Tech",
+        "protection": 50,
+        "increaseWeaponDamage": 0,
+        "evasion": 50,
+        "prototype": "Modification"
+    }, {
+        "id": "Failsafe",
+        "modName": "Failsafe",
+        "protection": 0,
+        "increaseWeaponDamage": 0,
+        "evasion": 120,
+        "prototype": "Modification"
+    }, {
+        "id": "RaisedWell",
+        "modName": "Raised Well",
+        "protection": 70,
+        "increaseWeaponDamage": -10,
+        "evasion": 70,
+        "prototype": "Modification"
+    }]
+}
