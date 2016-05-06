@@ -8,11 +8,15 @@ var $ = require("jquery"),
     modifications = require("./modifications.js"),
     weapons = require("./weapons.js");
 
+
+
 /********************************************
 ** Empty Player Objects for collecting data**
 ********************************************/
 var p1stats = {};
 var p2stats = {};
+
+
 
 /********************************************
 **          PLAYER 1 SETUP - Cards         **
@@ -57,23 +61,7 @@ function displayPlayer1SetUp() {
         $("#player1Type").addClass("disabled");
     });
 
-    //Step 6: When User Selects a Type, Show Arrow
-    $(".playerModel").click(function(e){
-        $(".playerModel").removeClass("selected");
-        $(e.currentTarget).addClass("selected");
-        $("#p1ModelNextArrow").show(); 
-    });
-
-    //Step 7: When User Hits Arrow, Display Next Card
-    $("#p1ModelNextArrow").click(function(){
-        // p1stats.model = $("div.playerModel.selected").id();
-        // populateWeapons();
-        $("#player1NameAndTypeLeft").hide();
-        $("#player1ModelRight").hide();
-        $("#player1Weapons").show();
-        $("#player1Weapons").addClass("animated bounceInDown");
-        $("#p1WeaponsNextArrow").hide();
-    });
+    //See below for steps 6 and 7. They need to happen when DOM is dynamically populated.
 
     //Step 8: When User Selects a Weapon, Show Arrow
     $(".playerWeapon").click(function(e){
@@ -109,6 +97,27 @@ function displayPlayer1SetUp() {
         $("#player1Weapons").addClass("disabled");
     });
 }
+
+function playerModelClickEvents() {
+    //Step 6: When User Selects a Type, Show Arrow
+    $(".playerModel").click(function(e){
+        $(".playerModel").removeClass("selected");
+        $(e.currentTarget).addClass("selected");
+        $("#p1ModelNextArrow").show(); 
+    });
+
+    //Step 7: When User Hits Arrow, Display Next Card
+    $("#p1ModelNextArrow").click(function(){
+        // p1stats.model = $("div.playerModel.selected").id();
+        // populateWeapons();
+        $("#player1NameAndTypeLeft").hide();
+        $("#player1ModelRight").hide();
+        $("#player1Weapons").show();
+        $("#player1Weapons").addClass("animated bounceInDown");
+        $("#p1WeaponsNextArrow").hide();
+    });
+};
+
 
 /********************************************
 **       PLAYER 1 SETUP - Populate Dom     **
@@ -156,6 +165,7 @@ function populateModels(robotType) {
                             style="width:  ${intellegenceBonusPercent}"><span class="sr-only">20% Complete</span></div></div></div></div></div>`;
     });
     $("#modelHolder").html(buildModelDOM);
+    playerModelClickEvents();
 }
 
 
@@ -166,9 +176,7 @@ function getMaxOfArray(numArray) {
 }
 
 function calculateHealthBonusPercent(healthMinOfSpecificModel) {
-    console.log("healthMinOfSpecificModel", healthMinOfSpecificModel);
     var highestHealthMinOfAllModels = getMaxOfArray(healthMinForAllModels);
-    console.log("highestHealthMinOfAllModels", highestHealthMinOfAllModels);
     var healthMinPercent = (healthMinOfSpecificModel / highestHealthMinOfAllModels) * 100 + "%";
     return healthMinPercent;
 }
