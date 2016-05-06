@@ -3,7 +3,9 @@
 /********************************************
 **          Browserify Dependencies        **
 ********************************************/
-let $ = require("jquery");
+var $ = require("jquery"),
+    DOM = require("./DOMAppend.js"),
+    utils = require("./utils.js");
 
 
 
@@ -23,6 +25,50 @@ const RobotWeapons = {};
 *****             - Gun                 *****
 *****             - RainCloud           *****
 ********************************************/
+
+let _weapons = new Map();
+
+let weaponsXHR = function() {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: "json/weapons.json"
+    }).done(function(data) {
+      resolve(data);
+    }).then(function(data){
+        DOM.getweaponsInfoFromJSON(data);
+        // parseXHRIntoPrototype(data);
+    }).fail(function(xhr, status, error) {
+      reject(error);
+    });
+  });
+}();
+
+let parseXHRIntoPrototype = function(data) {
+    data.weapons.forEach(($weapon) => {
+        //Define prototype for each robot weapon
+        let prototypeForObject = ($weapon.prototype === null) ? {} : _weapons.get($weapon.prototype);
+        
+        let Weapon = Object.create(prototypeForObject);
+
+      // Add all properties from JSON to new object
+          Object.keys($weapon).filter((prop) => prop !== "prototype").forEach((property) => {
+            utils.defineProperty(Weapon, property, $weapon[property]);
+          });
+
+          // Add new weapon to the Map
+          _weapons.set($weapon.id, Weapon);
+    });
+};
+
+
+
+
+
+
+
+
+
+
 RobotWeapons.Weapon = function() {
     this.name = 'base name';
     this.damage = null;
@@ -54,13 +100,13 @@ RobotWeapons.BottleRocket = ()  => {
 };
 RobotWeapons.BottleRocket.prototype = new RobotWeapons.Weapon();
 
-RobotWeapons.HumanEmotions = ()  => {
+RobotWeapons.Emotions = ()  => {
 // Define the range of damage that each weapon can do.
-    this.name = "Human Emotions";
+    this.name = "Emotions";
     this.minDamage = 0;
     this.maxDamage = 45;
 };
-RobotWeapons.HumanEmotions.prototype = new RobotWeapons.Weapon();
+RobotWeapons.Emotions.prototype = new RobotWeapons.Weapon();
 
 RobotWeapons.Gun = ()  => {
 // Define the range of damage that each weapon can do.

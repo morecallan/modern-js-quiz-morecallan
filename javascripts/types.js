@@ -46,10 +46,9 @@ let typesXHR = function() {
         parseXHRIntoPrototype(data);
     }).fail(function(xhr, status, error) {
       reject(error);
-
     });
   });
-};
+}();
 
 let parseXHRIntoPrototype = function(data) {
     data.types.forEach(($type) => {
@@ -63,12 +62,11 @@ let parseXHRIntoPrototype = function(data) {
             utils.defineProperty(ModelType, property, $type[property]);
           });
 
-          // Add new profession to the Map
+          // Add new model to the type Map
           _types.set($type.id, ModelType);
     });
 };
 
-typesXHR();
 
 /****************** DRONES *****************/
 /*******   Drone Type Base Object  *********/

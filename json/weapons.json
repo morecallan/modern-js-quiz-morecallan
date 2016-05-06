@@ -8,31 +8,37 @@
         "id": "Tazer",
         "weaponName": "Tazer",
         "minDamage": 10,
-        "maxDamage": 30
+        "maxDamage": 30,
+        "prototype": "Weapon"
     }, {
         "id": "Screwdriver",
         "weaponName": "Screwdriver",
         "minDamage": 4,
-        "maxDamage": 40
+        "maxDamage": 40,
+        "prototype": "Weapon"
     }, {
         "id": "BottleRocket",
         "weaponName": "Bottle Rocket",
         "minDamage": 20,
-        "maxDamage": 35
+        "maxDamage": 35,
+        "prototype": "Weapon"
     }, {
-        "id": "HumanEmotions",
-        "weaponName": "Human Emotions",
+        "id": "Emotions",
+        "weaponName": "Emotions",
         "minDamage": 0,
-        "maxDamage": 45
+        "maxDamage": 45,
+        "prototype": "Weapon"
     }, {
         "id": "Gun",
         "weaponName": "Gun",
         "minDamage": 15,
-        "maxDamage": 30
+        "maxDamage": 30,
+        "prototype": "Weapon"
     }, {
         "id": "RainCloud",
         "weaponName": "Rain Cloud",
         "minDamage": 11,
-        "maxDamage": 33
+        "maxDamage": 33,
+        "prototype": "Weapon"
     }]
 }
