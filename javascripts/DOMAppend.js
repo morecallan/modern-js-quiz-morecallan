@@ -22,7 +22,10 @@ function displayPlayerSetUp(playerTitle, player) {
     //Step 1: Display Only Player 1 SetUp Name
     $(".playSetUpCard").hide();
     $("#player" + player + "Name").show();
+    $(".logoBar").hide();
+    $("#logoBar" + player).show();
     $("#p" + player + "NameNextArrow").hide();
+
 
     //Step 2: When User Starts Typing Name, Show Arrow
     $("#p" + player + "NameInput").keyup(function(){
@@ -50,7 +53,7 @@ function displayPlayerSetUp(playerTitle, player) {
     //Step 5: When User Hits Arrow, Display Next Card
     $("#p" + player + "TypeNextArrow").click(function(){
         playerTitle.type = $("div.playerType.selected")[0].id;
-        populateModels(playerTitle.type);
+        populateModels(playerTitle.type, playerTitle, player);
         $("#player" + player + "Model").show();
         $("#player" + player + "Model").addClass("animated rotateInUpLeft");
         $("#p" + player + "ModelNextArrow").hide();
@@ -63,65 +66,66 @@ function displayPlayerSetUp(playerTitle, player) {
     //See below for steps 10 and 11. They need to happen when DOM(Modifications) is dynamically populated.
 }
 
-function playerModelClickEvents() {
+function playerModelClickEvents(playerTitle, player) {
     //Step 6: When User Selects a Type, Show Arrow
     $(".playerModel").click(function(e){
         $(".playerModel").removeClass("selected");
         $(e.currentTarget).addClass("selected");
-        $("#p1ModelNextArrow").show(); 
+        $("#p"+ player + "ModelNextArrow").show(); 
     });
 
     //Step 7: When User Hits Arrow, Display Next Card
-    $("#p1ModelNextArrow").click(function(){
-        p1stats.model = $("div.playerModel.selected")[0].id;
-        populateWeapons();
-        $("#player1NameAndTypeLeft").hide();
-        $("#player1ModelRight").hide();
-        $("#player1Weapons").show();
-        $("#player1Weapons").addClass("animated bounceInDown");
-        $("#p1WeaponsNextArrow").hide();
+    $("#p"+ player + "ModelNextArrow").click(function(){
+        playerTitle.model = $("div.playerModel.selected")[0].id;
+        populateWeapons(playerTitle, player);
+        $("#player"+ player + "NameAndTypeLeft").hide();
+        $("#player"+ player + "ModelRight").hide();
+        $("#player"+ player + "Weapons").show();
+        $("#player"+ player + "Weapons").addClass("animated bounceInDown");
+        $("#p"+ player + "WeaponsNextArrow").hide();
     });
 }
 
 
-function playerWeaponsClickEvents(){
+function playerWeaponsClickEvents(playerTitle, player){
     //Step 8: When User Selects a Weapon, Show Arrow
     $(".playerWeapon").click(function(e){
         $(".playerWeapon").removeClass("selected");
         $(e.currentTarget).addClass("selected");
-        $("#p1WeaponsNextArrow").show(); 
+        $("#p"+ player + "WeaponsNextArrow").show(); 
     });
 
     //Step 9: When User Hits Arrow, Display Next Card
-    $("#p1WeaponsNextArrow").click(function(){
-        p1stats.weapon = $("div.playerWeapon.selected")[0].id;
-        populateModifications();
-        $("#player1Modifications").show();
-        $("#player1Modifications").addClass("animated rotateInUpLeft");
-        $("#p1ModificationsNextArrow").hide();
-        $("#player1Weapons").removeClass("animated slideInDown");
-        $("#player1Weapons").addClass("disabled");
+    $("#p"+ player + "WeaponsNextArrow").click(function(){
+        playerTitle.weapon = $("div.playerWeapon.selected")[0].id;
+        populateModifications(playerTitle, player);
+        $("#player"+ player + "Modifications").show();
+        $("#player"+ player + "Modifications").addClass("animated rotateInUpLeft");
+        $("#p"+ player + "ModificationsNextArrow").hide();
+        $("#player"+ player + "Weapons").removeClass("animated slideInDown");
+        $("#player"+ player + "Weapons").addClass("disabled");
     });
 }
 
 
-function playerModificationsClickEvents(){
+function playerModificationsClickEvents(playerTitle, player){
     //Step 10: When User Selects a Modifictaion, Show Arrow
     $(".playerModification").click(function(e){
         $(".playerModification").removeClass("selected");
         $(e.currentTarget).addClass("selected");
-        $("#p1ModificationsNextArrow").show(); 
+        $("#p"+ player + "ModificationsNextArrow").show(); 
     });
 
     //Step 11: When User Hits Arrow, Display P2 Setup
-    $("#p1ModificationsNextArrow").click(function(){
-        p1stats.modifications = $("div.playerModification.selected")[0].id;
+    $("#p"+ player + "ModificationsNextArrow").click(function(){
+        $(".playSetUpCard").hide();
+        playerTitle.modifications = $("div.playerModification.selected")[0].id;
+        player++;
         console.log("p1stats", p1stats);
-        $("#player1Modifications").show();
-        $("#player1Modifications").addClass("animated rotateInUpLeft");
-        $("#p1ModificationsNextArrow").hide();
-        $("#player1Weapons").removeClass("animated slideInDown");
-        $("#player1Weapons").addClass("disabled");
+        console.log("p2stats", p2stats);
+        if(player < 3) {
+            displayPlayerSetUp(p2stats, player);
+        }
     });
 }
 
@@ -155,7 +159,7 @@ function decideWhichTypeInfoToPassToPopulateModels(robotType){
     return dataToPassToPopulateModels;
 }
 
-function populateModels(robotType) {
+function populateModels(robotType, playerTitle, player) {
     var models = decideWhichTypeInfoToPassToPopulateModels(robotType);
     var buildModelDOM = "";
     models.forEach(($model) => {
@@ -172,8 +176,8 @@ function populateModels(robotType) {
                             <h3>EVASION:</h3><div class="progress"><div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" 
                             style="width:  ${intellegenceBonusPercent}"><span class="sr-only">20% Complete</span></div></div></div></div></div>`;
     });
-    $("#modelHolder").html(buildModelDOM);
-    playerModelClickEvents();
+    $("#modelHolder" + player).html(buildModelDOM);
+    playerModelClickEvents(playerTitle, player);
 }
 
 //Populating Weapons Card
@@ -191,7 +195,7 @@ function decideWhichWeaponInfoToPassToPopulateWeapons(){
     return dataToPassToPopulateWeapons;
 }
 
-function populateWeapons() {
+function populateWeapons(playerTitle, player) {
     var weapons = decideWhichWeaponInfoToPassToPopulateWeapons();
     var boxCounter = 0;
     var buildWeaponDOM = `<div class="col-md-6">`;
@@ -203,8 +207,8 @@ function populateWeapons() {
         boxCounter++;
     });
     buildWeaponDOM += `</div>`;
-    $("#weaponsHolder").html(buildWeaponDOM);
-    playerWeaponsClickEvents();
+    $("#weaponsHolder" + player).html(buildWeaponDOM);
+    playerWeaponsClickEvents(playerTitle, player);
 }
 
 //Populating Modifications Card
@@ -219,11 +223,10 @@ function decideWhichModInfoToPassToPopulateModifications(){
             dataToPassToPopulateModifications.push($modification);
         }
     });
-    console.log("dataToPassToPopulateModifications", dataToPassToPopulateModifications);
     return dataToPassToPopulateModifications;
 }
 
-function populateModifications() {
+function populateModifications(playerTitle, player) {
     var modifications = decideWhichModInfoToPassToPopulateModifications();
     var boxCounter = 0;
     var buildModDOM = `<div class="col-md-6">`;
@@ -235,8 +238,8 @@ function populateModifications() {
         boxCounter++;
     });
     buildModDOM += `</div>`;
-    $("#modificationsHolder").html(buildModDOM);
-    playerModificationsClickEvents();
+    $("#modificationsHolder"  + player).html(buildModDOM);
+    playerModificationsClickEvents(playerTitle, player);
 }
 
 /////******   Helper Functions   ******/////
