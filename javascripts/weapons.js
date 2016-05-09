@@ -8,14 +8,6 @@ var $ = require("jquery"),
     utils = require("./utils.js");
 
 
-
-/********************************************
-**        HOLDS ALL ASSETS FOR TYPES       **
-********************************************/
-const RobotWeapons = {};
-
-
-
 /********************************************
 **      LOGIC REQ 5: Define 6 Weapons      **
 *****             - Tazer               *****
@@ -26,8 +18,17 @@ const RobotWeapons = {};
 *****             - RainCloud           *****
 ********************************************/
 
+
+/********************************************
+**        HOLDS ALL ASSETS FOR TYPES       **
+********************************************/
+let RobotWeapons;
+
+
+//Creates a new Map(object with value keys that do NOT have to be strings). This will contain the BASE function of Weapon and then 6 weapons within it's prototype chain.
 let _weapons = new Map();
 
+//Loads data from weapons.json
 let weaponsXHR = function() {
   return new Promise(function(resolve, reject) {
     $.ajax({
@@ -35,97 +36,34 @@ let weaponsXHR = function() {
     }).done(function(data) {
       resolve(data);
     }).then(function(data){
-        DOM.getWeaponsInfoFromJSON(data);
-        // parseXHRIntoPrototype(data);
+        DOM.getWeaponsInfoFromJSON(data); //Populates the DOM with Weapon Names
+        parseWeaponXHRIntoPrototype(data); //Fills out the weapons map
     }).fail(function(xhr, status, error) {
       reject(error);
     });
   });
 }();
 
-let parseXHRIntoPrototype = function(data) {
+let parseWeaponXHRIntoPrototype = function(data) {
     data.weapons.forEach(($weapon) => {
-        //Define prototype for each robot weapon
+        //If the prototype key is null, this means that it is the BASE function. When it sees this, it creates an empty object. If the item HAS a prototype listed, it's prototype is assigned as a key within the object created.
         let prototypeForObject = ($weapon.prototype === null) ? {} : _weapons.get($weapon.prototype);
         
-        let Weapon = Object.create(prototypeForObject);
+        //Creates an object for each JSON weapon cycled through. If the object has a prototype listed that is NOT null, the object is initiated with a key-value pair of the object's listed prototype
+        let newWeapon = Object.create(prototypeForObject);
 
-      // Add all properties from JSON to new object
-          Object.keys($weapon).filter((prop) => prop !== "prototype").forEach((property) => {
-            utils.defineProperty(Weapon, property, $weapon[property]);
-          });
+        // Add all properties from JSON to new object
+        Object.keys($weapon).filter((prop) => prop !== "prototype").forEach((property) => {
+          utils.defineProperty(newWeapon, property, $weapon[property]);
+        });
 
-          // Add new weapon to the Map
-          _weapons.set($weapon.id, Weapon);
+        // Add new weapon to the Map
+        _weapons.set($weapon.id, newWeapon);
     });
 };
 
-
-
-
-
-
-
-
-
-
-RobotWeapons.Weapon = function() {
-    this.name = 'base name';
-    this.damage = null;
-};
-
-
-
-RobotWeapons.Tazer = ()  => {
-// Define the range of damage that each weapon can do.
-    this.name = "Tazer";
-    this.minDamage = 10;
-    this.maxDamage = 30;
-};
-RobotWeapons.Tazer.prototype = new RobotWeapons.Weapon();
-
-RobotWeapons.Screwdriver = ()  => {
-// Define the range of damage that each weapon can do.
-    this.name = "Screwdriver";
-    this.minDamage = 4;
-    this.maxDamage = 40;
-};
-RobotWeapons.Screwdriver.prototype = new RobotWeapons.Weapon();
-
-RobotWeapons.BottleRocket = ()  => {
-// Define the range of damage that each weapon can do.
-    this.name = "Bottle Rocket";
-    this.minDamage = 20;
-    this.maxDamage = 35;
-};
-RobotWeapons.BottleRocket.prototype = new RobotWeapons.Weapon();
-
-RobotWeapons.Emotions = ()  => {
-// Define the range of damage that each weapon can do.
-    this.name = "Emotions";
-    this.minDamage = 0;
-    this.maxDamage = 45;
-};
-RobotWeapons.Emotions.prototype = new RobotWeapons.Weapon();
-
-RobotWeapons.Gun = ()  => {
-// Define the range of damage that each weapon can do.
-    this.name = "Gun";
-    this.minDamage = 15;
-    this.maxDamage = 30;
-};
-RobotWeapons.Tazer.prototype = new RobotWeapons.Weapon();
-
-RobotWeapons.RainCloud = ()  => {
-// Define the range of damage that each weapon can do.
-    this.name = "Rain Cloud";
-    this.minDamage = 11;
-    this.maxDamage = 33;
-};
-RobotWeapons.RainCloud.prototype = new RobotWeapons.Weapon();
-
-
-
+//Passes the weapons map into the RobotWeapons const after it has been built. 
+RobotWeapons = _weapons;
 
 /********************************************
 **             Browserify Exports          **

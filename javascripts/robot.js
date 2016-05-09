@@ -20,8 +20,11 @@ var Robots = {};
 /********************************************
 **        LOGIC REQ 1: Base Robot Func     **
 ********************************************/
+
+
+
 Robots.Player  = function() {
-  this.playerName = null;
+  this.playerName = "";
   this.img = null;
 
   //IS A:
@@ -32,59 +35,68 @@ Robots.Player  = function() {
   this.modification = null;
   this.weapon = null;
 
-  this.originalHealth = 0;
-  this.health = 0;
+  this.health = 100;
 
-  this.strength = 0;
+  this.strength = 100;
+
+  this.intelligence = 100;
 
   this.evasion = 0;
-
-  this.intelligence = 0;
 };
 
-Robots.Player.prototype.setName = (newName)  => {
+/////******   Helper Functions   ******/////
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+Robots.Player.prototype.setName = function (newName) {
   this.playerName = newName;
 };
 
-Robots.Player.prototype.setModel = (newModel)  => {
-  this.model = new types.RobotTypes[newModel]();
+Robots.Player.prototype.setImage = function (newImage) {
+  this.img = newImage;
 };
 
+Robots.Player.prototype.setType = function (newType) {
+  this.type = types.RobotTypes.get(newType);
+};
 
-Robots.Player.prototype.healthModification = (healthBonus) => {
+Robots.Player.prototype.healthModification = function(healthBonus) {
   this.health += healthBonus;
 };
 
-Robots.Player.prototype.strengthModification = (strengthBonus) => {
+Robots.Player.prototype.strengthModification = function(strengthBonus) {
   this.strength += strengthBonus;
 };
 
-Robots.Player.prototype.evasionModification = (evasionBonus) => {
+Robots.Player.prototype.evasionModification = function(evasionBonus) {
   this.evasion += evasionBonus;
 };
 
-Robots.Player.prototype.intelligenceModification = (intelligenceBonus) => {
+Robots.Player.prototype.intelligenceModification = function(intelligenceBonus) {
   this.intelligence += intelligenceBonus;
 };
 
-Robots.Player.prototype.setType = (newType)  => {
-  console.log("newType", newType);
-  this.type = new types.RobotTypes[newType]();
+Robots.Player.prototype.setModel = function (newModel) {
+  this.model = types.RobotTypes.get(newModel);
 
-  this.healthModification(newType.healthModifier);
-  this.strengthModification(newType.strengthModifier);
-  this.evasionModification(newType.evasionModifier);
-  this.intelligenceModification(newType.intelligenceModifier);
+  var maxHealth = this.model.healthMin + this.model.healthRange;
+  var healthGenerator = getRandomInt(this.model.healthMin, maxHealth) + this.model.healthModifier;
+
+  this.healthModification(healthGenerator);
+  this.strengthModification(this.model.strengthModifier + this.type.strengthModifier);
+  this.intelligenceModification(this.model.intelligenceModifier + this.type.intelligenceModifier);
+};
+
+Robots.Player.prototype.setModifcation = function (newModification){
+  this.modification = modifications.RobotModifications.get(newModification);
+};
+
+Robots.Player.prototype.setWeapon = function(newWeapon) {
+  this.weapon = weapons.RobotWeapons.get(newWeapon);
 };
 
 
-Robots.Player.prototype.setModifcation = (newModification)  => {
-  this.modification = new modifications.RobotModifications[newModification]();
-};
-
-Robots.Player.prototype.setWeapon = (newWeapon)  => {
-  this.weapon = new weapons.RobotWeapons[newWeapon]();
-};
 
 
 

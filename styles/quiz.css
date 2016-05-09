@@ -43,9 +43,9 @@ a, a:hover{
 }
 
 .logoSwitch {
-  -webkit-animation: neon 1.5s ease-in-out infinite alternate;
-  -moz-animation: neon 1.5s ease-in-out infinite alternate;
-  animation: neon 1.5s ease-in-out infinite alternate;
+  -webkit-animation: neon .4s ease-in-out infinite alternate;
+  -moz-animation: neon .4s ease-in-out infinite alternate;
+  animation: neon .4s ease-in-out infinite alternate;
 }
 
 @-webkit-keyframes neon {
@@ -374,4 +374,10 @@ a, a:hover{
 
 .battle {
   text-align: center;
+}
+
+/***********  BATTLEDOME: FIGHTING ROBOTS OH MY  **************/
+#battleDome img {
+  width: 60%;
+  margin: 20%;
 }

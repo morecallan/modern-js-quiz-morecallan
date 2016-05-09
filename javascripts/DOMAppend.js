@@ -23,6 +23,7 @@ function displayPlayerSetUp(playerTitle, player) {
 
     //Step 1: Display Only Player 1 SetUp Name
     $("#playerViews").hide();
+    $("#battleDome").hide();
     $(".playSetUpCard").hide();
     $("#player" + player + "Name").show();
     $(".logoBar").hide();
@@ -30,10 +31,12 @@ function displayPlayerSetUp(playerTitle, player) {
     $("#p" + player + "NameNextArrow").hide();
 
     let logoFlashNeon = function() {
-        $(".logoSub").addClass("logoSwitch");
+        setTimeout(function() { 
+            $(".logoSub").addClass("logoSwitch");
+        }, 500);
         setTimeout(function() { 
           $(".logoSub").removeClass("logoSwitch");        
-        }, 2500);
+        }, 2300);
     };
 
     logoFlashNeon();
@@ -264,6 +267,18 @@ function populateModifications(playerTitle, player) {
     playerModificationsClickEvents(playerTitle, player);
 }
 
+
+
+/********************************************
+**        Battledome - populate/show       **
+********************************************/
+function showBattledome() {
+    $(".page").hide();
+    $("#battleDome").show();
+    $("#logoBattle").show();
+}
+
+
 /////******   Helper Functions   ******/////
 function getMaxOfArray(numArray) {
   return Math.max.apply(null, numArray);
@@ -286,7 +301,6 @@ function calculateIntelligenceBonusPercent(intelligenceBonusofSpecificModel){
     var intelligenceBonusPercent = (intelligenceBonusofSpecificModel / highestIntelligenceOfAllModels) * 100 + "%";
     return intelligenceBonusPercent;
 }
-
 
 
 /********************************************
@@ -318,6 +332,7 @@ module.exports = {
   getTypeInfoFromJSON,
   getWeaponsInfoFromJSON,
   getModificationsInfoFromJSON,
+  showBattledome,
   p1stats,
   p2stats
 };

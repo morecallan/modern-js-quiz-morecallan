@@ -8,14 +8,6 @@ var $ = require("jquery"),
     utils = require("./utils.js");
 
 
-
-/********************************************
-**        HOLDS ALL ASSETS FOR TYPES       **
-********************************************/
-const RobotModifications = {};
-
-
-
 /********************************************
 **   LOGIC REQ 5: Define 6 Modifications   **
 *****             - Speed               *****
@@ -26,8 +18,17 @@ const RobotModifications = {};
 *****             - Raised Well         *****
 ********************************************/
 
+
+/********************************************
+**        HOLDS ALL ASSETS FOR TYPES       **
+********************************************/
+let RobotModifications;
+
+
+//Creates a new Map(object with value keys that do NOT have to be strings). This will contain the BASE function of Modification and then 6 mods within it's prototype chain.
 let _modifications = new Map();
 
+//Loads data from weapons.json
 let modificationsXHR = function() {
   return new Promise(function(resolve, reject) {
     $.ajax({
@@ -35,105 +36,34 @@ let modificationsXHR = function() {
     }).done(function(data) {
       resolve(data);
     }).then(function(data){
-        DOM.getModificationsInfoFromJSON(data);
-        // parseXHRIntoPrototype(data);
+        DOM.getModificationsInfoFromJSON(data); //Populates the DOM with Modifications Names
+        parseModificationXHRIntoPrototype(data); //Fills out the modifications map
     }).fail(function(xhr, status, error) {
       reject(error);
     });
   });
 }();
 
-let parseXHRIntoPrototype = function(data) {
+let parseModificationXHRIntoPrototype = function(data) {
     data.modifications.forEach(($modification) => {
-        //Define prototype for each robot weapon
+        //If the prototype key is null, this means that it is the BASE function. When it sees this, it creates an empty object. If the item HAS a prototype listed, it's prototype is assigned as a key within the object created.
         let prototypeForObject = ($modification.prototype === null) ? {} : _modifications.get($modification.prototype);
         
-        let Modification = Object.create(prototypeForObject);
+        //Creates an object for each JSON weapon cycled through. If the object has a prototype listed that is NOT null, the object is initiated with a key-value pair of the object's listed prototype
+        let newModification = Object.create(prototypeForObject);
 
-      // Add all properties from JSON to new object
-          Object.keys($modification).filter((prop) => prop !== "prototype").forEach((property) => {
-            utils.defineProperty(Modification, property, $modification[property]);
-          });
+        // Add all properties from JSON to new object
+        Object.keys($modification).filter((prop) => prop !== "prototype").forEach((property) => {
+          utils.defineProperty(newModification, property, $modification[property]);
+        });
 
-          // Add new weapon to the Map
-          _modifications.set($modification.id, Modification);
+        // Add new modification to the Map
+        _modifications.set($modification.id, newModification);
     });
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-RobotModifications.Modification = function() {
-    this.name = 'base name';
-    this.protection = null;
-    this.increaseWeaponDamage = null;
-    this.evasion = null;
-};
-
-
-
-RobotModifications.Speedy = ()  => {
-// Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
-    this.protection = 10;
-    this.increaseWeaponDamage = 0;
-    this.evasion = 50;
-};
-RobotModifications.Speedy.prototype = new RobotModifications.Modification();
-
-RobotModifications.ShieldSmash = ()  => {
-// Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
-    this.protection = 0;
-    this.increaseWeaponDamage = 90;
-    this.evasion = 0;
-};
-RobotModifications.ShieldSmash.prototype = new RobotModifications.Modification();
-
-RobotModifications.Armor = ()  => {
-// Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
-    this.protection = 90;
-    this.increaseWeaponDamage = 0;
-    this.evasion = 10;
-};
-RobotModifications.Armor.prototype = new RobotModifications.Modification();
-
-RobotModifications.StealthTech = ()  => {
-// Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
-    this.protection = 50;
-    this.increaseWeaponDamage = 0;
-    this.evasion = 50;
-};
-RobotModifications.StealthTech.prototype = new RobotModifications.Modification();
-
-RobotModifications.Failsafe = ()  => {
-// Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
-    this.protection = 0;
-    this.increaseWeaponDamage = 0;
-    this.evasion = 120;
-};
-RobotModifications.Failsafe.prototype = new RobotModifications.Modification();
-
-RobotModifications.RaisedWell = ()  => {
-// Each modification should provide some combination of the following benefits - increased protection, increased damage, or evasion capability (ability to avoid some attacks).
-    this.protection = 70;
-    this.increaseWeaponDamage = -10;
-    this.evasion = 70;
-};
-RobotModifications.RaisedWell.prototype = new RobotModifications.Modification();
-
-
+//Passes the weapons map into the RobotWeapons const after it has been built. 
+RobotModifications = _modifications;
 
 
 /********************************************
