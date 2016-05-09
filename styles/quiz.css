@@ -42,6 +42,20 @@ a, a:hover{
   font-size: 40px;
 }
 
+.logoSwitch {
+  -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon 1.5s ease-in-out infinite alternate;
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0DDEFF, 0 0 70px #0DDEFF, 0 0 80px #0DDEFF, 0 0 100px #0DDEFF, 0 0 150px #0DDEFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0DDEFF, 0 0 35px #0DDEFF, 0 0 40px #0DDEFF, 0 0 50px #0DDEFF, 0 0 75px #0DDEFF;
+  }
+}
 
 
 
@@ -353,9 +367,11 @@ a, a:hover{
   text-align: center;
 }
 
-
-
 .playerDisplay img{
   width: 40%;
   margin: 4% 10% 0 10%;
+}
+
+.battle {
+  text-align: center;
 }

@@ -14,6 +14,8 @@ var p2stats = {};
 
 displayPlayerSetUp(p1stats, 1);
 
+let checkToSeeAllDataHasBeenCollected = false; 
+
 /********************************************
 **           PLAYER SETUP - Cards          **
 ********************************************/
@@ -27,6 +29,14 @@ function displayPlayerSetUp(playerTitle, player) {
     $("#logoBar" + player).show();
     $("#p" + player + "NameNextArrow").hide();
 
+    let logoFlashNeon = function() {
+        $(".logoSub").addClass("logoSwitch");
+        setTimeout(function() { 
+          $(".logoSub").removeClass("logoSwitch");        
+        }, 2500);
+    };
+
+    logoFlashNeon();
 
     //Step 2: When User Starts Typing Name, Show Arrow
     $("#p" + player + "NameInput").keyup(function(){
@@ -129,6 +139,8 @@ function playerModificationsClickEvents(playerTitle, player){
             $("#p"+ player - 1 + "setup").hide();
             populatePlayerDisplay();
             $("#playerViews").show();
+            $(".logoBar").hide();
+            $("#logoBarReview").show();
         }
     });
 }
@@ -291,6 +303,8 @@ function populatePlayerDisplay(){
 
     $("#p1Holder").html(robot1String);
     $("#p2Holder").html(robot2String);
+
+    checkToSeeAllDataHasBeenCollected = true;
 }
 
 

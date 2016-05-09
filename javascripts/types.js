@@ -65,6 +65,7 @@ let parseXHRIntoPrototype = function(data) {
           // Add new model to the type Map
           _types.set($type.id, ModelType);
     });
+    console.log("_types", _types);
 };
 
 
