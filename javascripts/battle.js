@@ -15,8 +15,8 @@ let $ = require("jquery"),
 //   FR7:   Once the modification for Player 2 is chosen, the battle begins.
 function initiateBattle (robotPlayer1, robotPlayer2) {
     DOM.showBattledome(robotPlayer1, robotPlayer1);
-    $("#robot1BattleHolder").html(`<div class="col-md-12 playerNameDisplay">${robotPlayer1.playerName}</div>${robotPlayer1.img}<div class="col-md-12" id="player1Health">${robotPlayer1.health}</div>`);
-    $("#robot2BattleHolder").html(`<div class="col-md-12 playerNameDisplay">${robotPlayer2.playerName}</div>${robotPlayer2.img}<div class="col-md-12" id="player2Health">${robotPlayer2.health}</div>`);
+    $("#robot1BattleHolder").html(`<div class="col-md-12 playerNameDisplay">${robotPlayer1.playerName}</div>${robotPlayer1.img}<div class="col-md-12" id="player1Health"><h4>Health: ${robotPlayer1.health}</h4></div>`);
+    $("#robot2BattleHolder").html(`<div class="col-md-12 playerNameDisplay">${robotPlayer2.playerName}</div>${robotPlayer2.img}<div class="col-md-12" id="player2Health"><h4>Health: ${robotPlayer2.health}</h4></div>`);
     attackSequence(robotPlayer1, robotPlayer2);
 }
 
@@ -36,8 +36,8 @@ function calculateAttackDamage(player) {
     //Player's health, strength and intelligence are averaged.
     let playerCurrentStat = ((player.health + player.strength + player.intelligence)/3);
     //Player's minimum and maximum attack damage is calculated then it picks a random number between the 2 and returns it
-    let maximumAttackDamage = player.weapon.maxDamage * (playerCurrentStat/100);
-    let minimumAttackDamage = player.weapon.minDamage;
+    let maximumAttackDamage = player.weapon.maxDamage * (playerCurrentStat/100) + player.modification.increaseWeaponDamage;
+    let minimumAttackDamage = player.weapon.minDamage + player.modification.increaseWeaponDamage;
     let attackDamage = 0;
     if (minimumAttackDamage >= maximumAttackDamage) {
         attackDamage = Math.floor(maximumAttackDamage);
@@ -49,6 +49,30 @@ function calculateAttackDamage(player) {
 
 
 /********************************************
+**            CALCULATE EVASION            **
+********************************************/
+function calculateEvasion(attacker, opponent) {
+    let doesOpponentEvade = false;
+    let randomEvasionIntForAttackRound = getRandomInt(0, 100);
+    if (opponent.modification.evasion >= randomEvasionIntForAttackRound) {
+        doesOpponentEvade = true;
+    }
+    return doesOpponentEvade;
+}
+
+/********************************************
+**         CALCULATE PROTECTION            **
+********************************************/
+function calculateProtection(attacker, opponent) {
+    let doesProtectionWork = false;
+    let randomProtectionIntForAttackRound = getRandomInt(0, 100);
+    if (opponent.modification.protection >= randomProtectionIntForAttackRound) {
+        doesProtectionWork = true;
+    }
+    return doesProtectionWork;
+}
+
+/********************************************
 **        EACH ROUND OF THE ATTACK...      **
 ********************************************/
 function attackSequence(robotPlayer1, robotPlayer2) {
@@ -56,6 +80,7 @@ function attackSequence(robotPlayer1, robotPlayer2) {
     let attackAction = function(attacker, opponent) {
         let battleRoundEvenOrOdd;
         let opponentID;
+
         if (battleRounds%2 === 0) {
             battleRoundEvenOrOdd = 1;
             opponentID = 2;
@@ -64,12 +89,29 @@ function attackSequence(robotPlayer1, robotPlayer2) {
             opponentID = 1;
         }
 
-        //Combatant's attack score is caluclated
-        let damageToOpponentHealth = calculateAttackDamage(attacker);
-        //Opponent's health is reduced by attack score
-        opponent.health = opponent.health - damageToOpponentHealth;
-        // Display attack score on DOM
-        let attackMessage = `<p class="attackOutput attackOutput${battleRoundEvenOrOdd}"> ${attacker.playerName} the ${attacker.model.id} attacks ${opponent.playerName} the ${opponent.model.id} with ${attacker.weapon.weaponName} and does ${damageToOpponentHealth} damage. </p>`;
+        let doesOpponentEvade = calculateEvasion(attacker, opponent);
+        let doesOpponentShield = calculateProtection(attacker, opponent);
+
+        let attackMessage;
+        if (!doesOpponentEvade && !doesOpponentShield) {
+            //Combatant's attack score is caluclated
+            let damageToOpponentHealth = calculateAttackDamage(attacker);
+            //Opponent's health is reduced by attack score
+            opponent.health = opponent.health - damageToOpponentHealth;
+            // Display attack score on DOM
+            attackMessage = `<p class="attackOutput attackOutput${battleRoundEvenOrOdd}"> ${attacker.playerName} the ${attacker.model.id} attacks ${opponent.playerName} the ${opponent.model.id} with ${attacker.weapon.weaponName} and does ${damageToOpponentHealth} damage. </p>`;
+        } else if (!doesOpponentEvade && doesOpponentShield) {
+            let protectionPercentage = Math.floor((100 - opponent.modification.protection)/100);
+            //Combatant's attack score is caluclated
+            let damageToOpponentHealthwithProtection = calculateAttackDamage(attacker) * protectionPercentage;
+            //Opponent's health is reduced by attack score
+            opponent.health = opponent.health - damageToOpponentHealthwithProtection;
+            // Display attack score on DOM
+            attackMessage = `<p class="attackOutput attackOutput${battleRoundEvenOrOdd}"> ${attacker.playerName} the ${attacker.model.id} attacks ${opponent.playerName} the ${opponent.model.id} (protected) with ${attacker.weapon.weaponName} and does ${damageToOpponentHealthwithProtection} damage. </p>`;
+        } else if (doesOpponentEvade) {
+            attackMessage = `<p class="attackOutput attackOutput${battleRoundEvenOrOdd}"> ${attacker.playerName} the ${attacker.model.id} does it's best to attack ${opponent.playerName} the ${opponent.model.id} but fails miserably and retreats. </p>`;
+        }
+
         $("#battleOutputText").append(attackMessage);
         let playerHealthUpdate = `<h4>Health: ${opponent.health}</h4>`;
         $("#player" + opponentID + "Health").html(playerHealthUpdate);

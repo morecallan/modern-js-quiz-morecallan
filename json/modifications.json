@@ -11,7 +11,7 @@
         "modName": "Speedy",
         "protection": 10,
         "increaseWeaponDamage": 0,
-        "evasion": 70,
+        "evasion": 55,
         "moreInfo": "Increased evastion capabilities.",
         "prototype": "Modification"
     }, {
@@ -25,7 +25,7 @@
     }, {
         "id": "Armor",
         "modName": "Armor",
-        "protection": 90,
+        "protection": 80,
         "increaseWeaponDamage": 0,
         "evasion": 10,
         "moreInfo": "Decreases the damage of your opponent's attacks",
@@ -43,7 +43,7 @@
         "modName": "Failsafe",
         "protection": 0,
         "increaseWeaponDamage": -20,
-        "evasion": 80,
+        "evasion": 60,
         "moreInfo": "High chance to evade your opponent's attacks, lowers weapon effectiveness.",
         "prototype": "Modification"
     }, {
@@ -51,7 +51,7 @@
         "modName": "Raised Well",
         "protection": 50,
         "increaseWeaponDamage": -10,
-        "evasion": 50,
+        "evasion": 40,
         "moreInfo": "Increased protection and evasion skills.",
         "prototype": "Modification"
     }]
