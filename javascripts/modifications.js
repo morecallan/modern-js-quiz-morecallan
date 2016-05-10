@@ -3,7 +3,7 @@
 /********************************************
 **          Browserify Dependencies        **
 ********************************************/
-var $ = require("jquery"),
+let $ = require("jquery"),
     DOM = require("./DOMAppend.js"),
     utils = require("./utils.js");
 
@@ -20,11 +20,14 @@ var $ = require("jquery"),
 
 
 /********************************************
-**        HOLDS ALL ASSETS FOR TYPES       **
+**        HOLDS ALL ASSETS FOR MODS        **
 ********************************************/
 let RobotModifications;
 
 
+/********************************************
+**      GRABS INFO FROM JSON => MAP        **
+********************************************/
 //Creates a new Map(object with value keys that do NOT have to be strings). This will contain the BASE function of Modification and then 6 mods within it's prototype chain.
 let _modifications = new Map();
 
@@ -62,8 +65,9 @@ let parseModificationXHRIntoPrototype = function(data) {
     });
 };
 
-//Passes the weapons map into the RobotWeapons const after it has been built. 
+//Passes the modifications map into the RobotModifications obj after it has been built. 
 RobotModifications = _modifications;
+
 
 
 /********************************************

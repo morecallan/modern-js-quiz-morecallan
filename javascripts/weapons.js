@@ -3,9 +3,10 @@
 /********************************************
 **          Browserify Dependencies        **
 ********************************************/
-var $ = require("jquery"),
+let $ = require("jquery"),
     DOM = require("./DOMAppend.js"),
     utils = require("./utils.js");
+
 
 
 /********************************************
@@ -25,6 +26,9 @@ var $ = require("jquery"),
 let RobotWeapons;
 
 
+/********************************************
+**      GRABS INFO FROM JSON => MAP        **
+********************************************/
 //Creates a new Map(object with value keys that do NOT have to be strings). This will contain the BASE function of Weapon and then 6 weapons within it's prototype chain.
 let _weapons = new Map();
 
@@ -62,8 +66,10 @@ let parseWeaponXHRIntoPrototype = function(data) {
     });
 };
 
-//Passes the weapons map into the RobotWeapons const after it has been built. 
+//Passes the weapons map into the RobotWeapons obj after it has been built. 
 RobotWeapons = _weapons;
+
+
 
 /********************************************
 **             Browserify Exports          **

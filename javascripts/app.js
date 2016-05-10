@@ -1,8 +1,10 @@
 "use strict";
 
 
-//BROWSERIFY ENTRY FILE: Requirements (es6 notation)
-//Now everytime we need to call a function or variable in these JS files, we will need to reference it as <varName>.monster, etc
+/********************************************
+**          Browserify Dependencies        **
+**           BROWSERIFY ENTRY FILE         **
+********************************************/
 let $ = require("jquery"),
     DOM = require("./DOMAppend.js"),
     battle = require("./battle.js"),
@@ -12,6 +14,10 @@ let $ = require("jquery"),
     weapons = require("./weapons.js");
 
 
+
+/********************************************
+**   Imports User selections from setup    **
+********************************************/
 let robot1stats = null;
 let robot2stats = null;
 
@@ -21,13 +27,17 @@ function loadPlayerSelections() {
 }
 
 
-//When Player Setup is complete, build Player Protoypes out of selection.
-$("#battleNow").click(function(){
+
+/********************************************
+**      When Player Setup is complete,     **
+**   create new P instances w/ selections  **
+********************************************/
+$("#battleNow").click(() => {
     loadPlayerSelections();
 
-    //Code to generate 2 robot players
-    var robotP1 = new robot.Robots.Player();
-    var robotP2 = new robot.Robots.Player();
+    //Code to generate 2 instances of robot players
+    let robotP1 = new robot.Robots.Player();
+    let robotP2 = new robot.Robots.Player();
 
     // Passing player selections into Player/Robot objects.
     robotP1.setName(robot1stats.playerName);
@@ -44,14 +54,14 @@ $("#battleNow").click(function(){
     robotP2.setWeapon(robot2stats.weapon);
     robotP2.setModifcation(robot2stats.modification);
 
-    console.log("robotP1", robotP1);
-    console.log("robotP2", robotP2);
-
     //Initiating battle between 2 robots
     battle.initiateBattle(robotP1, robotP2);
 });
 
 
 
+/********************************************
+**             Browserify Exports          **
+********************************************/
 module.exports = {
 };

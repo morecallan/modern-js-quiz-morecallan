@@ -1,14 +1,14 @@
 "use strict";
 
-var config = {  
-  writable: true,
-  enumerable: true,
-  configurable: true
+let config = {  
+    writable: true,
+    enumerable: true,
+    configurable: true
 };
 
-var defineProperty = function(obj, name, value) {  
-  config.value = value;
-  Object.defineProperty(obj, name, config);
+let defineProperty = function(obj, name, value) {  
+    config.value = value;
+    Object.defineProperty(obj, name, config);
 };
 
 
@@ -16,5 +16,6 @@ var defineProperty = function(obj, name, value) {
 **             Browserify Exports          **
 ********************************************/
 module.exports = {
-  defineProperty
+    config,
+    defineProperty
 };

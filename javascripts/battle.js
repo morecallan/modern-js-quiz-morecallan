@@ -1,9 +1,10 @@
 "use strict";
 
+
 /********************************************
 **          Browserify Dependencies        **
 ********************************************/
-var $ = require("jquery"),
+let $ = require("jquery"),
     DOM = require("./DOMAppend.js");
 
 
@@ -11,9 +12,8 @@ var $ = require("jquery"),
 /********************************************
 **              BATTLE SEQUENCE            **
 ********************************************/
-
+//   FR7:   Once the modification for Player 2 is chosen, the battle begins.
 function initiateBattle (robotPlayer1, robotPlayer2) {
-    console.log("robots", robotPlayer1, robotPlayer2);
     DOM.showBattledome(robotPlayer1, robotPlayer1);
     $("#robot1BattleHolder").html(robotPlayer1.img);
     $("#robot2BattleHolder").html(robotPlayer2.img);
@@ -21,22 +21,24 @@ function initiateBattle (robotPlayer1, robotPlayer2) {
 }
 
 
+/********************************************
+**         BATTLE ROUNDS COUNTER           **
+********************************************/
+//   FR8:   Each round of battle should determine the amount of damage each robot will do with its weapon.
+let battleRounds = 1;
 
-// Each round of battle should determine the amount of damage each robot will do with its weapon.
-//Battle round counter
-var battleRounds = 1;
 
-
-
-
-// That damage should then be adjusted based on the modifications that it has, and what its opponent has.
+/********************************************
+**        DAMAGE CALC FOR EACH ATTACK      **
+********************************************/
+//   FR9:   That damage should then be adjusted based on the modifications that it has, and what its opponent has.
 function calculateAttackDamage(player) {
     //Player's health, strength and intelligence are averaged.
-    var playerCurrentStat = ((player.health + player.strength + player.intelligence)/3);
+    let playerCurrentStat = ((player.health + player.strength + player.intelligence)/3);
     //Player's minimum and maximum attack damage is calculated then it picks a random number between the 2 and returns it
-    var maximumAttackDamage = player.weapon.maxDamage * (playerCurrentStat/100);
-    var minimumAttackDamage = player.weapon.minDamage;
-    var attackDamage = 0;
+    let maximumAttackDamage = player.weapon.maxDamage * (playerCurrentStat/100);
+    let minimumAttackDamage = player.weapon.minDamage;
+    let attackDamage = 0;
     if (minimumAttackDamage >= maximumAttackDamage) {
         attackDamage = Math.floor(maximumAttackDamage);
     } else {
@@ -46,10 +48,12 @@ function calculateAttackDamage(player) {
 }
 
 
-//This is what happens if attack button is pressed
+/********************************************
+**        EACH ROUND OF THE ATTACK...      **
+********************************************/
 function attackSequence(robotPlayer1, robotPlayer2) {
 
-    var attackAction = function(attacker, opponent) {
+    let attackAction = function(attacker, opponent) {
         console.log("battleRounds", battleRounds);
         let battleRoundEvenOrOdd;
         if (battleRounds%2 === 0) {
@@ -58,7 +62,7 @@ function attackSequence(robotPlayer1, robotPlayer2) {
             battleRoundEvenOrOdd = 225;
         }
         //Combatant's attack score is caluclated
-        var damageToOpponentHealth = calculateAttackDamage(attacker);
+        let damageToOpponentHealth = calculateAttackDamage(attacker);
         //Opponent's health is reduced by attack score
         opponent.health = opponent.health - damageToOpponentHealth;
         // Display attack score - DOM output("Attacker" attacks "opponent" with "weapon" and does {x} damage.)
@@ -68,7 +72,7 @@ function attackSequence(robotPlayer1, robotPlayer2) {
         battleRounds++;
     };
 
-    setTimeout(function(){
+    setTimeout(()=>{
         attackAction(robotPlayer1, robotPlayer2);
         attackAction(robotPlayer2, robotPlayer1);
         checkHealthToSeeIfOneOfTheseBitchesDied(robotPlayer1, robotPlayer2);
@@ -76,29 +80,20 @@ function attackSequence(robotPlayer1, robotPlayer2) {
     
 }
 
-// Rounds continue until one of the robots has 0, or less than 0, health.
+//   FR10:   Rounds continue until one of the robots has 0, or less than 0, health.
+//   FR11:   When the battle is over display the outcome to the user.
 function checkHealthToSeeIfOneOfTheseBitchesDied(robotPlayer1, robotPlayer2) {
     let battleWonMessage = "";
     if (robotPlayer1.health <= 0) {
-            //move to "lose" page
-            battleWonMessage = '<h2 class="battleWon">' + robotPlayer1.playerName +' the ' + robotPlayer1.model.id + ' defeated ' + robotPlayer2.playerName + ' the ' + robotPlayer2.model.id + ' with the ' + robotPlayer1.weapon.weaponName + '</h2>';
+        battleWonMessage = `<h2 class="battleWon">${robotPlayer1.playerName} the ${robotPlayer1.model.id} defeated ${robotPlayer2.playerName} the ${robotPlayer2.model.id} with the ${robotPlayer1.weapon.weaponName}</h2>`;
         $("#battleOutputText").html(battleWonMessage);
     } else if (robotPlayer2.health <= 0) {
-            //move to "win" page
-            battleWonMessage = '<h2 class="battleWon">' + robotPlayer2.playerName +' the ' + robotPlayer2.model.id + ' defeated ' + robotPlayer1.playerName + ' the ' + robotPlayer1.model.id + ' with the ' + robotPlayer2.weapon.weaponName + '</h2>';
+        battleWonMessage = `<h2 class="battleWon">${robotPlayer2.playerName} the ${robotPlayer2.model.id} defeated ${robotPlayer1.playerName} the ${robotPlayer1.model.id} with the ${robotPlayer2.weapon.weaponName}</h2>`;
         $("#battleOutputText").html(battleWonMessage);
     } else {
        attackSequence(robotPlayer1, robotPlayer2); 
     }
 }
-
-
-
-
-
-// When the battle is over display the outcome to the user. For example...
-// The Viper Drone defeated the Behemoth ATV with its flamethrower.
-
 
 
 

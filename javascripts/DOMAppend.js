@@ -4,24 +4,27 @@
 /********************************************
 **          Browserify Dependencies        **
 ********************************************/
-var $ = require("jquery");
+let $ = require("jquery");
+
+
 
 /********************************************
 ** Empty Player Objects for collecting data**
 ********************************************/
-var p1stats = {};
-var p2stats = {};
+let p1stats = {};
+let p2stats = {};
 
 displayPlayerSetUp(p1stats, 1);
 
-let checkToSeeAllDataHasBeenCollected = false; 
+
 
 /********************************************
 **           PLAYER SETUP - Cards          **
 ********************************************/
 function displayPlayerSetUp(playerTitle, player) {
 
-    //Step 1: Display Only Player 1 SetUp Name
+    //Step 1: Display Only Player SetUp Name
+    //   FR1:   When your user interface first loads, provide the user with buttons so that one specific robot model can be chosen as Player 1.
     $("#playerViews").hide();
     $("#battleDome").hide();
     $(".playSetUpCard").hide();
@@ -30,26 +33,27 @@ function displayPlayerSetUp(playerTitle, player) {
     $("#logoBar" + player).show();
     $("#p" + player + "NameNextArrow").hide();
 
-    let logoFlashNeon = function() {
-        setTimeout(function() { 
+    // Step 1b: When Player Setup Page first loads, draw attention to logo subtitle by having it flash neon.
+    let logoFlashNeon = () => {
+        setTimeout(() => { 
             $(".logoSub").addClass("logoSwitch");
-        }, 500);
-        setTimeout(function() { 
+        }, 400);
+        setTimeout(() => { 
           $(".logoSub").removeClass("logoSwitch");        
-        }, 2300);
+        }, 2200);
     };
 
     logoFlashNeon();
 
     //Step 2: When User Starts Typing Name, Show Arrow
-    $("#p" + player + "NameInput").keyup(function(){
+    $("#p" + player + "NameInput").keyup(() => {
         if($("#p" + player + "NameInput").val() !== "") {
            $("#p" + player + "NameNextArrow").show(); 
         }
     });
 
     //Step 3: When User Hits Arrow, Display Next Card
-    $("#p" + player + "NameNextArrow").click(function(){
+    $("#p" + player + "NameNextArrow").click(() => {
         playerTitle.playerName = $("#p" + player + "NameInput").val();
         $("#player" + player + "Type").show();
         $("#player" + player + "Type").addClass("animated slideInDown");
@@ -58,14 +62,14 @@ function displayPlayerSetUp(playerTitle, player) {
     });
 
     //Step 4: When User Selects a Type, Show Arrow
-    $(".playerType").click(function(e){
+    $(".playerType").click((e) => {
         $(".playerType").removeClass("selected");
         $(e.currentTarget).addClass("selected");
         $("#p" + player + "TypeNextArrow").show(); 
     });
 
     //Step 5: When User Hits Arrow, Display Next Card
-    $("#p" + player + "TypeNextArrow").click(function(){
+    $("#p" + player + "TypeNextArrow").click(() => {
         playerTitle.type = $("div.playerType.selected")[0].id;
         populateModels(playerTitle.type, playerTitle, player);
         $("#player" + player + "Model").show();
@@ -82,14 +86,14 @@ function displayPlayerSetUp(playerTitle, player) {
 
 function playerModelClickEvents(playerTitle, player) {
     //Step 6: When User Selects a Type, Show Arrow
-    $(".playerModel").click(function(e){
+    $(".playerModel").click((e) => {
         $(".playerModel").removeClass("selected");
         $(e.currentTarget).addClass("selected");
         $("#p"+ player + "ModelNextArrow").show(); 
     });
 
     //Step 7: When User Hits Arrow, Display Next Card
-    $("#p"+ player + "ModelNextArrow").click(function(){
+    $("#p"+ player + "ModelNextArrow").click(() => {
         playerTitle.model = $("div.playerModel.selected")[0].id;
         playerTitle.image = $("div.playerModel.selected")[0].firstElementChild.outerHTML;
         populateWeapons(playerTitle, player);
@@ -104,14 +108,14 @@ function playerModelClickEvents(playerTitle, player) {
 
 function playerWeaponsClickEvents(playerTitle, player){
     //Step 8: When User Selects a Weapon, Show Arrow
-    $(".playerWeapon").click(function(e){
+    $(".playerWeapon").click((e) => {
         $(".playerWeapon").removeClass("selected");
         $(e.currentTarget).addClass("selected");
         $("#p"+ player + "WeaponsNextArrow").show(); 
     });
 
     //Step 9: When User Hits Arrow, Display Next Card
-    $("#p"+ player + "WeaponsNextArrow").click(function(){
+    $("#p"+ player + "WeaponsNextArrow").click(() => {
         playerTitle.weapon = $("div.playerWeapon.selected")[0].id;
         populateModifications(playerTitle, player);
         $("#player"+ player + "Modifications").show();
@@ -125,14 +129,14 @@ function playerWeaponsClickEvents(playerTitle, player){
 
 function playerModificationsClickEvents(playerTitle, player){
     //Step 10: When User Selects a Modifictaion, Show Arrow
-    $(".playerModification").click(function(e){
+    $(".playerModification").click((e) => {
         $(".playerModification").removeClass("selected");
         $(e.currentTarget).addClass("selected");
         $("#p"+ player + "ModificationsNextArrow").show(); 
     });
 
     //Step 11: When User Hits Arrow, Display P2 Setup
-    $("#p"+ player + "ModificationsNextArrow").click(function(){
+    $("#p"+ player + "ModificationsNextArrow").click(() => {
         $(".playSetUpCard").hide();
         playerTitle.modification = $("div.playerModification.selected")[0].id;
         player++;
@@ -148,20 +152,23 @@ function playerModificationsClickEvents(playerTitle, player){
     });
 }
 
+
 /********************************************
 **        PLAYER SETUP - Populate Dom      **
 ********************************************/
-var modelDataFromJSON = null;
-var weaponsDataFromJSON = null;
-var modificationsDataFromJSON = null;
-var healthMinForAllModels = [];
-var strengthBonusForAllModels = [];
-var intelligenceBonusForAllModels = [];
+let modelDataFromJSON = null;
+let weaponsDataFromJSON = null;
+let modificationsDataFromJSON = null;
+let healthMinForAllModels = [];
+let strengthBonusForAllModels = [];
+let intelligenceBonusForAllModels = [];
 
 
 
 /////************        Populate Models Card        ************/////
 ///////////////////////////////////////////////////////////////////////
+//   FR1: When your user interface first loads, provide the user with buttons so that one specific robot model can be chosen as Player 1.
+//   FR4: Once Player 1 has a modification, provide the user with buttons so that one specific robot model can be chosen as Player 2.
 function getTypeInfoFromJSON(typeDataFromAJAX) {
     modelDataFromJSON = typeDataFromAJAX;
 }
@@ -182,12 +189,12 @@ function decideWhichTypeInfoToPassToPopulateModels(robotType){
 }
 
 function populateModels(robotType, playerTitle, player) {
-    var models = decideWhichTypeInfoToPassToPopulateModels(robotType);
-    var buildModelDOM = "";
+    let models = decideWhichTypeInfoToPassToPopulateModels(robotType);
+    let buildModelDOM = "";
     models.forEach(($model) => {
-        var healthBonusPercent = calculateHealthBonusPercent($model.healthMin);
-        var strengthBonusPercent = calculateStrengthBonusPercent($model.strengthModifier);
-        var intellegenceBonusPercent = calculateIntelligenceBonusPercent($model.intelligenceModifier);
+        let healthBonusPercent = calculateHealthBonusPercent($model.healthMin);
+        let strengthBonusPercent = calculateStrengthBonusPercent($model.strengthModifier);
+        let intellegenceBonusPercent = calculateIntelligenceBonusPercent($model.intelligenceModifier);
         buildModelDOM += `<div class="playerModel" id=${$model.id}>
                             <img src=${$model.image}><div class="modelDetailsContainer">
                             <h3>${$model.id} Bonuses</h3><div class="modelStat">
@@ -205,6 +212,8 @@ function populateModels(robotType, playerTitle, player) {
 
 /////************        Populate Weapons Card        ************/////
 ///////////////////////////////////////////////////////////////////////
+//   FR2:   Once the user selects a robot model for Player 1, show a button for each weapon that can be added to the robot.
+//   FR5:   Once the user selects a robot model for Player 2, show a button for each weapon that can be added to the robot.
 function getWeaponsInfoFromJSON(typeDataFromAJAX) {
     weaponsDataFromJSON = typeDataFromAJAX;
 }
@@ -220,9 +229,9 @@ function decideWhichWeaponInfoToPassToPopulateWeapons(){
 }
 
 function populateWeapons(playerTitle, player) {
-    var weapons = decideWhichWeaponInfoToPassToPopulateWeapons();
-    var boxCounter = 0;
-    var buildWeaponDOM = `<div class="col-md-6">`;
+    let weapons = decideWhichWeaponInfoToPassToPopulateWeapons();
+    let boxCounter = 0;
+    let buildWeaponDOM = `<div class="col-md-6">`;
     weapons.forEach(($weapon) => {
         buildWeaponDOM += `<div class="playerWeapon" id=${$weapon.id}>${$weapon.weaponName}</div>`;
         if (boxCounter === 2) {
@@ -235,8 +244,11 @@ function populateWeapons(playerTitle, player) {
     playerWeaponsClickEvents(playerTitle, player);
 }
 
+
 /////************     Populate Modifications Card     ************/////
 ///////////////////////////////////////////////////////////////////////
+//   FR3:   Once the user selects a weapon for Player 1, show a button for each modification that can be added to the robot.
+//   FR6:   Once the user selects a weapon for Player 2, show a button for each modification that can be added to the robot.
 function getModificationsInfoFromJSON(typeDataFromAJAX) {
     modificationsDataFromJSON = typeDataFromAJAX;
 }
@@ -268,7 +280,6 @@ function populateModifications(playerTitle, player) {
 }
 
 
-
 /********************************************
 **        Battledome - populate/show       **
 ********************************************/
@@ -279,26 +290,27 @@ function showBattledome() {
 }
 
 
+
 /////******   Helper Functions   ******/////
 function getMaxOfArray(numArray) {
   return Math.max.apply(null, numArray);
 }
 
 function calculateHealthBonusPercent(healthMinOfSpecificModel) {
-    var highestHealthMinOfAllModels = getMaxOfArray(healthMinForAllModels);
-    var healthMinPercent = (healthMinOfSpecificModel / highestHealthMinOfAllModels) * 100 + "%";
+    let highestHealthMinOfAllModels = getMaxOfArray(healthMinForAllModels);
+    let healthMinPercent = (healthMinOfSpecificModel / highestHealthMinOfAllModels) * 100 + "%";
     return healthMinPercent;
 }
 
 function calculateStrengthBonusPercent(strengthBonusofSpecificModel){
-    var highestStrengthOfAllModels = getMaxOfArray(strengthBonusForAllModels);
-    var strengthBonusPercent = (strengthBonusofSpecificModel / highestStrengthOfAllModels) * 100 + "%";
+    let highestStrengthOfAllModels = getMaxOfArray(strengthBonusForAllModels);
+    let strengthBonusPercent = (strengthBonusofSpecificModel / highestStrengthOfAllModels) * 100 + "%";
     return strengthBonusPercent;
 }
 
 function calculateIntelligenceBonusPercent(intelligenceBonusofSpecificModel){
-    var highestIntelligenceOfAllModels = getMaxOfArray(intelligenceBonusForAllModels);
-    var intelligenceBonusPercent = (intelligenceBonusofSpecificModel / highestIntelligenceOfAllModels) * 100 + "%";
+    let highestIntelligenceOfAllModels = getMaxOfArray(intelligenceBonusForAllModels);
+    let intelligenceBonusPercent = (intelligenceBonusofSpecificModel / highestIntelligenceOfAllModels) * 100 + "%";
     return intelligenceBonusPercent;
 }
 
@@ -308,8 +320,8 @@ function calculateIntelligenceBonusPercent(intelligenceBonusofSpecificModel){
 ********************************************/
 
 function populatePlayerDisplay(){
-    var robot1String = "";
-    var robot2String = "";
+    let robot1String = "";
+    let robot2String = "";
     
     robot1String += `<div class="playerDisplay">${p1stats.image}<p class="imageLabel">${p1stats.playerName}</p><p>TYPE: ${p1stats.type} </p><p>MODEL: ${p1stats.model}</p><p>WEAPON: ${p1stats.weapon}</p><p>MODIFICATION: ${p1stats.modification}</p></div>`;
     robot2String += `<div class="playerDisplay">${p2stats.image}<p class="imageLabel">${p2stats.playerName}</p><p>TYPE: ${p2stats.type} </p><p>MODEL: ${p2stats.model}</p><p>WEAPON: ${p2stats.weapon}</p><p>MODIFICATION: ${p2stats.modification}</p></div>`;
@@ -317,10 +329,7 @@ function populatePlayerDisplay(){
 
     $("#p1Holder").html(robot1String);
     $("#p2Holder").html(robot2String);
-
-    checkToSeeAllDataHasBeenCollected = true;
 }
-
 
 
 

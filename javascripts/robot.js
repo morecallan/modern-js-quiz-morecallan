@@ -3,7 +3,7 @@
 /********************************************
 **          Browserify Dependencies        **
 ********************************************/
-var $ = require("jquery"),
+let $ = require("jquery"),
     modifications = require("./modifications.js"),
     types = require("./types.js"),
     weapons = require("./weapons.js");
@@ -13,16 +13,13 @@ var $ = require("jquery"),
 /********************************************
 **        HOLDS ALL ASSETS FOR ROBOTS      **
 ********************************************/
-var Robots = {};
+let Robots = {};
 
 
 
 /********************************************
 **        LOGIC REQ 1: Base Robot Func     **
 ********************************************/
-
-
-
 Robots.Player  = function() {
   this.playerName = "";
   this.img = null;
@@ -44,11 +41,10 @@ Robots.Player  = function() {
   this.evasion = 0;
 };
 
-/////******   Helper Functions   ******/////
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
 
+/********************************************
+**   SETTER FUNC FOR PLAYER CONSTRUSTOR    **
+********************************************/
 Robots.Player.prototype.setName = function (newName) {
   this.playerName = newName;
 };
@@ -80,8 +76,8 @@ Robots.Player.prototype.intelligenceModification = function(intelligenceBonus) {
 Robots.Player.prototype.setModel = function (newModel) {
   this.model = types.RobotTypes.get(newModel);
 
-  var maxHealth = this.model.healthMin + this.model.healthRange;
-  var healthGenerator = getRandomInt(this.model.healthMin, maxHealth) + this.model.healthModifier;
+  let maxHealth = this.model.healthMin + this.model.healthRange;
+  let healthGenerator = getRandomInt(this.model.healthMin, maxHealth) + this.model.healthModifier;
 
   this.healthModification(healthGenerator);
   this.strengthModification(this.model.strengthModifier + this.type.strengthModifier);
@@ -97,6 +93,11 @@ Robots.Player.prototype.setWeapon = function(newWeapon) {
 };
 
 
+
+/////******   Helper Functions   ******/////
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 
 
