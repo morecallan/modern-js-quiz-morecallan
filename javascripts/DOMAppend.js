@@ -233,7 +233,7 @@ function populateWeapons(playerTitle, player) {
     let boxCounter = 0;
     let buildWeaponDOM = `<div class="col-md-6">`;
     weapons.forEach(($weapon) => {
-        buildWeaponDOM += `<div class="playerWeapon" id=${$weapon.id}>${$weapon.weaponName}</div>`;
+        buildWeaponDOM += `<div class="playerWeapon" id=${$weapon.id} data-mindam=${$weapon.minDamage} data-maxdam=${$weapon.maxDamage}>${$weapon.weaponName}<p class="hidden">${$weapon.moreInfo}</p></div>`;
         if (boxCounter === 2) {
             buildWeaponDOM += `</div><div class="col-md-6">`;
         }
@@ -242,6 +242,18 @@ function populateWeapons(playerTitle, player) {
     buildWeaponDOM += `</div>`;
     $("#weaponsHolder" + player).html(buildWeaponDOM);
     playerWeaponsClickEvents(playerTitle, player);
+
+    $(".playerWeapon").mouseover((e) => {
+        let moreWeaponInfo = $(e.target).find('p')[0].innerText;
+        let weaponMinDam = $(e.target).data('mindam');
+        let weaponMaxDam = $(e.target).data('maxdam');
+        let buildWeaponInfo = `${moreWeaponInfo} Damage: ${weaponMinDam} - ${weaponMaxDam}`;
+        $("#weaponsInfo" + player).html(buildWeaponInfo);
+    });
+
+    $(".playerWeapon").mouseleave((e) => {
+        $("#weaponsInfo" + player).html("");
+    });
 }
 
 
@@ -268,7 +280,7 @@ function populateModifications(playerTitle, player) {
     var boxCounter = 0;
     var buildModDOM = `<div class="col-md-6">`;
     modifications.forEach(($modification) => {
-        buildModDOM += `<div class="playerModification" id=${$modification.id}>${$modification.modName}</div>`;
+        buildModDOM += `<div class="playerModification" id=${$modification.id}>${$modification.modName}<p class="hidden">${$modification.moreInfo}</p></div>`;
         if (boxCounter === 2) {
             buildModDOM += `</div><div class="col-md-6">`;
         }
@@ -277,6 +289,16 @@ function populateModifications(playerTitle, player) {
     buildModDOM += `</div>`;
     $("#modificationsHolder"  + player).html(buildModDOM);
     playerModificationsClickEvents(playerTitle, player);
+
+    $(".playerModification").mouseover((e) => {
+        let moreModificationInfo = $(e.target).find('p')[0].innerText;
+        let buildModInfo = `${moreModificationInfo}`;
+        $("#modificationsInfo" + player).html(buildModInfo);
+    });
+
+    $(".playerModification").mouseleave((e) => {
+        $("#modificationsInfo" + player).html("");
+    });
 }
 
 

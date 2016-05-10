@@ -25,7 +25,9 @@ a, a:hover{
   box-shadow: 0 0 5px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 15px rgba(255,255,255,1) , 0 0 20px #ff00de , 0 0 35px #ff00de , 0 0 40px #ff00de , 0 0 50px #ff00de ;
 } /*Selections that have been clicked on by user*/
 
-
+.hidden {
+  display: none;
+}
 
 
 /**********************       LOGO       ************************/
@@ -69,7 +71,7 @@ a, a:hover{
 }
 
 .cardHeader {
-  margin: 15px 30px 0;
+  margin: 2px 30px 0;
   font-size: 30px;
 }
 
@@ -87,6 +89,11 @@ a, a:hover{
   text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
 }
 
+.hoverOutput {
+  text-align: center;
+  margin-top: -20px;
+  font-size: 18px;
+}
 
 
 
@@ -135,7 +142,6 @@ a, a:hover{
 
 
 /*********** PAGE 1: Card 3: Player Model **************/
-
 #player1Model {
   height: 470px;
   font-size: 20px;
@@ -223,11 +229,6 @@ a, a:hover{
 }
 
 
-
-
-
-
-
 /*********** PAGE 1: Card 1: Player Name *************/
 #player2Name {
   height: 140px;
@@ -273,7 +274,6 @@ a, a:hover{
 
 
 /*********** PAGE 1: Card 3: Player Model **************/
-
 #player2Model {
   height: 470px;
   font-size: 20px;
@@ -360,6 +360,7 @@ a, a:hover{
   right: 10px;
 }
 
+
 /***********   PLAYER DISPLAY: Ready to battle?   **************/
 .playerDisplay {
   background-color: black;
@@ -375,6 +376,7 @@ a, a:hover{
 .battle {
   text-align: center;
 }
+
 
 /***********  BATTLEDOME: FIGHTING ROBOTS OH MY  **************/
 #battleDome .col-md-3 {

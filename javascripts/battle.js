@@ -54,18 +54,17 @@ function calculateAttackDamage(player) {
 function attackSequence(robotPlayer1, robotPlayer2) {
 
     let attackAction = function(attacker, opponent) {
-        console.log("battleRounds", battleRounds);
         let battleRoundEvenOrOdd;
         if (battleRounds%2 === 0) {
             battleRoundEvenOrOdd = 1;
         } else {
-            battleRoundEvenOrOdd = 225;
+            battleRoundEvenOrOdd = 2;
         }
         //Combatant's attack score is caluclated
         let damageToOpponentHealth = calculateAttackDamage(attacker);
         //Opponent's health is reduced by attack score
         opponent.health = opponent.health - damageToOpponentHealth;
-        // Display attack score - DOM output("Attacker" attacks "opponent" with "weapon" and does {x} damage.)
+        // Display attack score on DOM
         let attackMessage = `<p class="attackOutput attackOutput${battleRoundEvenOrOdd}"> ${attacker.playerName} the ${attacker.model.id} attacks ${opponent.playerName} the ${opponent.model.id} with ${attacker.weapon.weaponName} and does ${damageToOpponentHealth} damage. </p>`;
         attackMessage += `<p class="opponentHealth opponentHealth${battleRoundEvenOrOdd}"> ${opponent.playerName} health: ${opponent.health}</p>`;
         $("#battleOutputText").append(attackMessage);

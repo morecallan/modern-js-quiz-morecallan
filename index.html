@@ -13,172 +13,180 @@
 
 
 <body>
-    <article id="game-container">
+
+  <article id="game-container">
 
 
+    <!-- --------------------------- PLAYER 1 SETUP ------------------------------ -->
+    <section id="p1setup" class="page">
+      <div class="row logoBar" id="logoBar1">
+        <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5"><h2 class="logoSub">PLAYER 1 SETUP</h2></div>
+      </div>
 
-        <!-- --------------------------- PLAYER 1 SETUP ------------------------------ -->
-        <section id="p1setup" class="page">
-          <div class="row logoBar" id="logoBar1">
-            <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-5"><h2 class="logoSub">PLAYER 1 SETUP</h2></div>
-          </div>
-
-          <div class="col-md-4" id="player1NameAndTypeLeft">
-            <div id="player1Name" class="playSetUpCard">
-              <div class="row">
-                <div class="cardHeader">PLAYER 1 NAME...</div>
-                <a id="p1NameNextArrow" class="nextArrow">></a>
-                <div class="field">
-                  <input type="text" autofocus="true" id="p1NameInput" class="field__textinput" >
-                </div>
-              </div>
-            </div>
-
-            <div id="player1Type" class="playSetUpCard">
-              <div class="row">
-                <div class="cardHeader">PLAYER 1 TYPE...</div>
-                <a id="p1TypeNextArrow" class="nextArrow">></a>
-                <div class="playerType" id="Drone"><img src="img/drone0.jpg"><p class="imageLabel">DRONE</p></div>
-                <div class="playerType" id="Bipedal"><img src="img/bipedal0.jpg"><p class="imageLabel">BIPEDAL</p></div>
-                <div class="playerType" id="Cyborg"><img src="img/cyborg0.jpg"><p class="imageLabel">CYBORG</p></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-8" id="player1ModelRight">
-            <div id="player1Model" class="playSetUpCard">
-              <div class="row">
-                <div class="cardHeader">PLAYER 1 MODEL...</div>
-                <div id="modelHolder1"></div>
-                <a id="p1ModelNextArrow" class="nextArrow">></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6" id="player1WeaponsLeft">
-            <div id="player1Weapons" class="playSetUpCard">
-              <div class="card__prompt row">
-                <div class="cardHeader">PLAYER 1: GO GO GADGET...</div>
-                <div id="weaponsHolder1"></div>
-                <a id="p1WeaponsNextArrow" class="nextArrow">></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6" id="player1ModificationsRight">
-            <div id="player1Modifications" class="playSetUpCard">
-              <div class="cardHeader">PLAYER 1: SPICE UP YOUR LIFE...</div>
-              <div id="modificationsHolder1"></div>
-              <a id="p1ModificationsNextArrow" class="nextArrow">FINISH PLAYER 1 ></a>
-            </div>
-          </div>
-        </section>
-
-
-
-        <!-- --------------------------- PLAYER 2 SETUP ------------------------------ -->
-        <section id="p2setup" class="page">
-          <div class="row logoBar" id="logoBar2">
-            <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-5"><h2 class="logoSub">PLAYER 2 SETUP</h2></div>
-          </div>
-
-          <div class="col-md-4" id="player2NameAndTypeLeft">
-            <div id="player2Name" class="playSetUpCard">
-              <div class="row">
-                <div class="cardHeader">PLAYER 2 NAME...</div>
-                <a id="p2NameNextArrow" class="nextArrow">></a>
-                <div class="field">
-                  <input type="text" autofocus="true" id="p2NameInput" class="field__textinput" >
-                </div>
-              </div>
-            </div>
-
-            <div id="player2Type" class="playSetUpCard">
-              <div class="row">
-                <div class="cardHeader">PLAYER 2 TYPE...</div>
-                <a id="p2TypeNextArrow" class="nextArrow">></a>
-                <div class="playerType" id="Drone"><img src="img/drone0.jpg"><p class="imageLabel">DRONE</p></div>
-                <div class="playerType" id="Bipedal"><img src="img/bipedal0.jpg"><p class="imageLabel">BIPEDAL</p></div>
-                <div class="playerType" id="Cyborg"><img src="img/cyborg0.jpg"><p class="imageLabel">CYBORG</p></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-8" id="player2ModelRight">
-            <div id="player2Model" class="playSetUpCard">
-              <div class="row">
-                <div class="cardHeader">PLAYER 2 MODEL...</div>
-                <div id="modelHolder2"></div>
-                <a id="p2ModelNextArrow" class="nextArrow">></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6" id="player2WeaponsLeft">
-            <div id="player2Weapons" class="playSetUpCard">
-              <div class="card__prompt row">
-                <div class="cardHeader">PLAYER 2: GO GO GADGET...</div>
-                <div id="weaponsHolder2"></div>
-                <a id="p2WeaponsNextArrow" class="nextArrow">></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6" id="player2ModificationsRight">
-              <div id="player2Modifications" class="playSetUpCard">
-                <div class="cardHeader">PLAYER 2: SPICE UP YOUR LIFE...</div>
-                <div id="modificationsHolder2"></div>
-                <a id="p2ModificationsNextArrow" class="nextArrow">FINISH PLAYER 2 ></a>
-              </div>
-          </div>
-        </section>
-
-
-
-        <!-- --------------------------- READY TO BATTLE? ------------------------------ -->
-
-        <section id="playerViews" class="page">
-          <div class="row logoBar" id="logoBarReview">
-            <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-5"><h2 class="logoSub">READY TO BATTLE?</h2></div>
-          </div>
-
-          <div class="col-md-6" id="p1Holder"></div>
-          <div class="col-md-6" id="p2Holder"></div>
-
+      <div class="col-md-4" id="player1NameAndTypeLeft">
+        <div id="player1Name" class="playSetUpCard">
           <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 battle"><a id="battleNow" class="nextArrow"> >>>Battle Bots!<<< </a></div>
-            <div class="col-md-3"></div>
+            <div class="cardHeader">PLAYER 1 NAME...</div>
+            <a id="p1NameNextArrow" class="nextArrow">></a>
+            <div class="field">
+              <input type="text" autofocus="true" id="p1NameInput" class="field__textinput" >
+            </div>
           </div>
-        </section>
+        </div>
 
-
-
-        <!-- ---------------------------    BATTLEDOME    ------------------------------ -->
-        
-        <section id="battleDome" class="page">
-          <div class="row logoBar" id="logoBattle">
-            <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-5"><h2 class="logoSub">!! FIGHT !!</h2></div>
-          </div>
-
+        <div id="player1Type" class="playSetUpCard">
           <div class="row">
-            <div class="col-md-3" id="robot1BattleHolder"></div>
-            <div class="col-md-6" id="battleOutputText"></div>
-            <div class="col-md-3" id="robot2BattleHolder"></div>
+            <div class="cardHeader">PLAYER 1 TYPE...</div>
+            <a id="p1TypeNextArrow" class="nextArrow">></a>
+            <div class="playerType" id="Drone"><img src="img/drone0.jpg"><p class="imageLabel">DRONE</p></div>
+            <div class="playerType" id="Bipedal"><img src="img/bipedal0.jpg"><p class="imageLabel">BIPEDAL</p></div>
+            <div class="playerType" id="Cyborg"><img src="img/cyborg0.jpg"><p class="imageLabel">CYBORG</p></div>
           </div>
-        </section>
+        </div>
+      </div>
+
+      <div class="col-md-8" id="player1ModelRight">
+        <div id="player1Model" class="playSetUpCard">
+          <div class="row">
+            <div class="cardHeader">PLAYER 1 MODEL...</div>
+            <div id="modelHolder1"></div>
+            <a id="p1ModelNextArrow" class="nextArrow">></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6" id="player1WeaponsLeft">
+        <div id="player1Weapons" class="playSetUpCard">
+          <div class="row">
+            <div class="cardHeader">PLAYER 1: GO GO GADGET...</div>
+            <div id="weaponsHolder1"></div>
+            <div id="weaponsInfo1" class="col-md-12 hoverOutput"></div>
+            <a id="p1WeaponsNextArrow" class="nextArrow">></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6" id="player1ModificationsRight">
+        <div id="player1Modifications" class="playSetUpCard">
+          <div class="row">
+            <div class="cardHeader">PLAYER 1: SPICE UP YOUR LIFE...</div>
+            <div id="modificationsHolder1"></div>
+            <div id="modificationsInfo1" class="col-md-12 hoverOutput"></div>
+            <a id="p1ModificationsNextArrow" class="nextArrow">FINISH PLAYER 1 ></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
-        
-    </article>
+
+    <!-- --------------------------- PLAYER 2 SETUP ------------------------------ -->
+    <section id="p2setup" class="page">
+      <div class="row logoBar" id="logoBar2">
+        <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5"><h2 class="logoSub">PLAYER 2 SETUP</h2></div>
+      </div>
+
+      <div class="col-md-4" id="player2NameAndTypeLeft">
+        <div id="player2Name" class="playSetUpCard">
+          <div class="row">
+            <div class="cardHeader">PLAYER 2 NAME...</div>
+            <a id="p2NameNextArrow" class="nextArrow">></a>
+            <div class="field">
+              <input type="text" autofocus="true" id="p2NameInput" class="field__textinput" >
+            </div>
+          </div>
+        </div>
+
+        <div id="player2Type" class="playSetUpCard">
+          <div class="row">
+            <div class="cardHeader">PLAYER 2 TYPE...</div>
+            <a id="p2TypeNextArrow" class="nextArrow">></a>
+            <div class="playerType" id="Drone"><img src="img/drone0.jpg"><p class="imageLabel">DRONE</p></div>
+            <div class="playerType" id="Bipedal"><img src="img/bipedal0.jpg"><p class="imageLabel">BIPEDAL</p></div>
+            <div class="playerType" id="Cyborg"><img src="img/cyborg0.jpg"><p class="imageLabel">CYBORG</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8" id="player2ModelRight">
+        <div id="player2Model" class="playSetUpCard">
+          <div class="row">
+            <div class="cardHeader">PLAYER 2 MODEL...</div>
+            <div id="modelHolder2"></div>
+            <a id="p2ModelNextArrow" class="nextArrow">></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6" id="player2WeaponsLeft">
+        <div id="player2Weapons" class="playSetUpCard">
+          <div class="row">
+            <div class="cardHeader">PLAYER 2: GO GO GADGET...</div>
+            <div id="weaponsHolder2"></div>
+            <div id="weaponsInfo2" class="col-md-12 hoverOutput"></div>
+            <a id="p2WeaponsNextArrow" class="nextArrow">></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6" id="player2ModificationsRight">
+          <div id="player2Modifications" class="playSetUpCard">
+            <div class="row">
+              <div class="cardHeader">PLAYER 2: SPICE UP YOUR LIFE...</div>
+              <div id="modificationsHolder2"></div>
+              <div id="modificationsInfo2" class="col-md-12 hoverOutput"></div>
+              <a id="p2ModificationsNextArrow" class="nextArrow">FINISH PLAYER 2 ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- --------------------------- READY TO BATTLE? ------------------------------ -->
+
+    <section id="playerViews" class="page">
+      <div class="row logoBar" id="logoBarReview">
+        <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5"><h2 class="logoSub">READY TO BATTLE?</h2></div>
+      </div>
+
+      <div class="col-md-6" id="p1Holder"></div>
+      <div class="col-md-6" id="p2Holder"></div>
+
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 battle"><a id="battleNow" class="nextArrow"> >>>Battle Bots!<<< </a></div>
+        <div class="col-md-3"></div>
+      </div>
+    </section>
+
+
+
+    <!-- ---------------------------    BATTLEDOME    ------------------------------ -->
+    
+    <section id="battleDome" class="page">
+      <div class="row logoBar" id="logoBattle">
+        <div class="col-md-5"><h2 class="logoMain">ROBOT BATTLEDOME</h2></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5"><h2 class="logoSub">!! FIGHT !!</h2></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3" id="robot1BattleHolder"></div>
+        <div class="col-md-6" id="battleOutputText"></div>
+        <div class="col-md-3" id="robot2BattleHolder"></div>
+      </div>
+    </section>
+
+
+      
+  </article>
 
 
 
