@@ -15,8 +15,8 @@ let $ = require("jquery"),
 //   FR7:   Once the modification for Player 2 is chosen, the battle begins.
 function initiateBattle (robotPlayer1, robotPlayer2) {
     DOM.showBattledome(robotPlayer1, robotPlayer1);
-    $("#robot1BattleHolder").html(robotPlayer1.img);
-    $("#robot2BattleHolder").html(robotPlayer2.img);
+    $("#robot1BattleHolder").html(`<div class="col-md-12 playerNameDisplay">${robotPlayer1.playerName}</div>${robotPlayer1.img}<div class="col-md-12" id="player1Health">${robotPlayer1.health}</div>`);
+    $("#robot2BattleHolder").html(`<div class="col-md-12 playerNameDisplay">${robotPlayer2.playerName}</div>${robotPlayer2.img}<div class="col-md-12" id="player2Health">${robotPlayer2.health}</div>`);
     attackSequence(robotPlayer1, robotPlayer2);
 }
 
@@ -55,19 +55,24 @@ function attackSequence(robotPlayer1, robotPlayer2) {
 
     let attackAction = function(attacker, opponent) {
         let battleRoundEvenOrOdd;
+        let opponentID;
         if (battleRounds%2 === 0) {
             battleRoundEvenOrOdd = 1;
+            opponentID = 2;
         } else {
             battleRoundEvenOrOdd = 2;
+            opponentID = 1;
         }
+
         //Combatant's attack score is caluclated
         let damageToOpponentHealth = calculateAttackDamage(attacker);
         //Opponent's health is reduced by attack score
         opponent.health = opponent.health - damageToOpponentHealth;
         // Display attack score on DOM
         let attackMessage = `<p class="attackOutput attackOutput${battleRoundEvenOrOdd}"> ${attacker.playerName} the ${attacker.model.id} attacks ${opponent.playerName} the ${opponent.model.id} with ${attacker.weapon.weaponName} and does ${damageToOpponentHealth} damage. </p>`;
-        attackMessage += `<p class="opponentHealth opponentHealth${battleRoundEvenOrOdd}"> ${opponent.playerName} health: ${opponent.health}</p>`;
         $("#battleOutputText").append(attackMessage);
+        let playerHealthUpdate = `<h4>Health: ${opponent.health}</h4>`;
+        $("#player" + opponentID + "Health").html(playerHealthUpdate);
         battleRounds++;
     };
 
