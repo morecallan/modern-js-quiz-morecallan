@@ -29,6 +29,20 @@ a, a:hover{
   display: none;
 }
 
+.winner {
+  -webkit-animation: neonPink .4s ease-in-out infinite alternate;
+  -moz-animation: neonPink .4s ease-in-out infinite alternate;
+  animation: neonPink .4s ease-in-out infinite alternate;  
+}
+
+@-webkit-keyframes neonPink {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  }
+  to {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+  }
+}
 
 /**********************       LOGO       ************************/
 .logoBar {
@@ -71,7 +85,7 @@ a, a:hover{
 }
 
 .cardHeader {
-  margin: 2px 30px 0;
+  margin: 7px 30px 0;
   font-size: 30px;
 }
 
@@ -380,13 +394,17 @@ a, a:hover{
 
 /***********  BATTLEDOME: FIGHTING ROBOTS OH MY  **************/
 #battleDome .col-md-3 {
-  background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0, 0, 0, .8);
   border-radius: 15px;
   box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
   margin-top: 30px;
   border: 30px solid transparent;
   height: 400px;
   text-align: center;
+}
+
+.mainContainer {
+  background-color: rgba(0, 0, 0, .4);
 }
 
 .playerNameDisplay {
@@ -400,7 +418,7 @@ a, a:hover{
 }
 
 #battleOutputText {
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .3);
   text-align: center;
   overflow: auto;
   height: 475px;

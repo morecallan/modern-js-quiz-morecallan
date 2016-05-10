@@ -83,10 +83,10 @@ function attackSequence(robotPlayer1, robotPlayer2) {
 
         if (battleRounds%2 === 0) {
             battleRoundEvenOrOdd = 1;
-            opponentID = 2;
+            opponentID = 1;
         } else {
             battleRoundEvenOrOdd = 2;
-            opponentID = 1;
+            opponentID = 2;
         }
 
         let doesOpponentEvade = calculateEvasion(attacker, opponent);
@@ -112,7 +112,9 @@ function attackSequence(robotPlayer1, robotPlayer2) {
             attackMessage = `<p class="attackOutput attackOutput${battleRoundEvenOrOdd}"> ${attacker.playerName} the ${attacker.model.id} does it's best to attack ${opponent.playerName} the ${opponent.model.id} but fails miserably and retreats. </p>`;
         }
 
-        $("#battleOutputText").append(attackMessage);
+        let battleOutputText = $("#battleOutputText");
+        battleOutputText.append(attackMessage);
+        updateScroll(battleOutputText);
         let playerHealthUpdate = `<h4>Health: ${opponent.health}</h4>`;
         $("#player" + opponentID + "Health").html(playerHealthUpdate);
         battleRounds++;
@@ -130,12 +132,16 @@ function attackSequence(robotPlayer1, robotPlayer2) {
 //   FR11:   When the battle is over display the outcome to the user.
 function checkHealthToSeeIfOneOfTheseBitchesDied(robotPlayer1, robotPlayer2) {
     let battleWonMessage = "";
-    if (robotPlayer1.health <= 0) {
+    if (robotPlayer2.health <= 0) {
         battleWonMessage = `<h2 class="battleWon">${robotPlayer1.playerName} the ${robotPlayer1.model.id} defeated ${robotPlayer2.playerName} the ${robotPlayer2.model.id} with the ${robotPlayer1.weapon.weaponName}</h2>`;
         $("#battleOutputText").html(battleWonMessage);
-    } else if (robotPlayer2.health <= 0) {
+        $("#robot2BattleHolder").addClass("disabled");
+        $("#robot1BattleHolder").addClass("winner");
+    } else if (robotPlayer1.health <= 0) {
         battleWonMessage = `<h2 class="battleWon">${robotPlayer2.playerName} the ${robotPlayer2.model.id} defeated ${robotPlayer1.playerName} the ${robotPlayer1.model.id} with the ${robotPlayer2.weapon.weaponName}</h2>`;
         $("#battleOutputText").html(battleWonMessage);
+        $("#robot1BattleHolder").addClass("disabled");
+        $("#robot2BattleHolder").addClass("winner");
     } else {
        attackSequence(robotPlayer1, robotPlayer2); 
     }
@@ -146,6 +152,10 @@ function checkHealthToSeeIfOneOfTheseBitchesDied(robotPlayer1, robotPlayer2) {
 /////******   Helper Functions   ******/////
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function updateScroll(myElement) {
+    myElement[0].scrollTop = myElement[0].scrollHeight;
 }
 
 
