@@ -133,18 +133,29 @@ function attackSequence(robotPlayer1, robotPlayer2) {
 function checkHealthToSeeIfOneOfTheseBitchesDied(robotPlayer1, robotPlayer2) {
     let battleWonMessage = "";
     if (robotPlayer2.health <= 0) {
-        battleWonMessage = `<h2 class="battleWon">${robotPlayer1.playerName} the ${robotPlayer1.model.id} defeated ${robotPlayer2.playerName} the ${robotPlayer2.model.id} with the ${robotPlayer1.weapon.weaponName}</h2>`;
+        battleWonMessage = `<h2 class="battleWon">${robotPlayer1.playerName} the ${robotPlayer1.model.id}<br> defeated <br>${robotPlayer2.playerName} the ${robotPlayer2.model.id}<br> using the ${robotPlayer1.weapon.weaponName}</h2><a class="nextArrow battleAgain"> >>>Battle Again?<<< </a>`;
         $("#battleOutputText").html(battleWonMessage);
         $("#robot2BattleHolder").addClass("disabled");
         $("#robot1BattleHolder").addClass("winner");
+        activateClickEventForPlayAgainBtn();
     } else if (robotPlayer1.health <= 0) {
-        battleWonMessage = `<h2 class="battleWon">${robotPlayer2.playerName} the ${robotPlayer2.model.id} defeated ${robotPlayer1.playerName} the ${robotPlayer1.model.id} with the ${robotPlayer2.weapon.weaponName}</h2>`;
+        battleWonMessage = `<h2 class="battleWon">${robotPlayer2.playerName} the ${robotPlayer2.model.id}<br> defeated <br>${robotPlayer1.playerName} the ${robotPlayer1.model.id}<br> using the ${robotPlayer2.weapon.weaponName}</h2><a class="nextArrow battleAgain"> >>>Battle Again?<<< </a>`;
         $("#battleOutputText").html(battleWonMessage);
         $("#robot1BattleHolder").addClass("disabled");
         $("#robot2BattleHolder").addClass("winner");
+        activateClickEventForPlayAgainBtn();
     } else {
        attackSequence(robotPlayer1, robotPlayer2); 
     }
+}
+
+/********************************************
+** Reloads page when user clicks again btn **
+********************************************/
+function activateClickEventForPlayAgainBtn () {
+    $(".battleAgain").click(() => {
+        location.reload();
+    });  
 }
 
 

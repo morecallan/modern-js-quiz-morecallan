@@ -54,8 +54,15 @@ $("#battleNow").click(() => {
     robotP2.setWeapon(robot2stats.weapon);
     robotP2.setModifcation(robot2stats.modification);
 
+    $("#p1Holder").addClass("animated bounceOutLeft");
+    $("#p2Holder").addClass("animated bounceOutRight");
+    $("#robot1BattleHolder").addClass("animated bounceInLeft");
+    $("#robot2BattleHolder").addClass("animated bounceInRight");
+
     //Initiating battle between 2 robots
-    battle.initiateBattle(robotP1, robotP2);
+    setTimeout(()=>{
+        battle.initiateBattle(robotP1, robotP2);
+    }, 420);
 });
 
 

@@ -40,7 +40,7 @@ function displayPlayerSetUp(playerTitle, player) {
         }, 400);
         setTimeout(() => { 
           $(".logoSub").removeClass("logoSwitch");        
-        }, 2200);
+        }, 2600);
     };
 
     logoFlashNeon();
@@ -345,8 +345,8 @@ function populatePlayerDisplay(){
     let robot1String = "";
     let robot2String = "";
     
-    robot1String += `<div class="playerDisplay">${p1stats.image}<p class="imageLabel">${p1stats.playerName}</p><p>TYPE: ${p1stats.type} </p><p>MODEL: ${p1stats.model}</p><p>WEAPON: ${p1stats.weapon}</p><p>MODIFICATION: ${p1stats.modification}</p></div>`;
-    robot2String += `<div class="playerDisplay">${p2stats.image}<p class="imageLabel">${p2stats.playerName}</p><p>TYPE: ${p2stats.type} </p><p>MODEL: ${p2stats.model}</p><p>WEAPON: ${p2stats.weapon}</p><p>MODIFICATION: ${p2stats.modification}</p></div>`;
+    robot1String += `<div class="playerDisplay">${p1stats.image}<p class="imageLabel">${p1stats.playerName}</p><p class="playerInfo">TYPE: ${p1stats.type} </p><p class="playerInfo">MODEL: ${p1stats.model}</p><p class="playerInfo">WEAPON: ${p1stats.weapon}</p><p class="playerInfo">MODIFICATION: ${p1stats.modification}</p></div>`;
+    robot2String += `<div class="playerDisplay">${p2stats.image}<p class="imageLabel">${p2stats.playerName}</p><p class="playerInfo">TYPE: ${p2stats.type} </p><p class="playerInfo">MODEL: ${p2stats.model}</p><p class="playerInfo">WEAPON: ${p2stats.weapon}</p><p class="playerInfo">MODIFICATION: ${p2stats.modification}</p></div>`;
 
 
     $("#p1Holder").html(robot1String);
