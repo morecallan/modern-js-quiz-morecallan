@@ -166,7 +166,7 @@ let intelligenceBonusForAllModels = [];
 
 
 /////************        Populate Models Card        ************/////
-///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 //   FR1: When your user interface first loads, provide the user with buttons so that one specific robot model can be chosen as Player 1.
 //   FR4: Once Player 1 has a modification, provide the user with buttons so that one specific robot model can be chosen as Player 2.
 function getTypeInfoFromJSON(typeDataFromAJAX) {

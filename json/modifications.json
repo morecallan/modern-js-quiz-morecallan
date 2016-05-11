@@ -12,7 +12,7 @@
         "protection": 10,
         "increaseWeaponDamage": 0,
         "evasion": 55,
-        "moreInfo": "Increased evastion capabilities.",
+        "moreInfo": "Increased evasion capabilities.",
         "prototype": "Modification"
     }, {
         "id": "ShieldSmash",

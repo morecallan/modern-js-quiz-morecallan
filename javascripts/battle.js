@@ -101,9 +101,9 @@ function attackSequence(robotPlayer1, robotPlayer2) {
             // Display attack score on DOM
             attackMessage = `<p class="attackOutput attackOutput${battleRoundEvenOrOdd}"> ${attacker.playerName} the ${attacker.model.id} attacks ${opponent.playerName} the ${opponent.model.id} with ${attacker.weapon.weaponName} and does ${damageToOpponentHealth} damage. </p>`;
         } else if (!doesOpponentEvade && doesOpponentShield) {
-            let protectionPercentage = Math.floor((100 - opponent.modification.protection)/100);
+            let protectionPercentage = (100 - opponent.modification.protection)/100;
             //Combatant's attack score is caluclated
-            let damageToOpponentHealthwithProtection = calculateAttackDamage(attacker) * protectionPercentage;
+            let damageToOpponentHealthwithProtection = Math.floor(calculateAttackDamage(attacker) * protectionPercentage);
             //Opponent's health is reduced by attack score
             opponent.health = opponent.health - damageToOpponentHealthwithProtection;
             // Display attack score on DOM
