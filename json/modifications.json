@@ -1,0 +1,58 @@
+{
+    "modifications": [{
+        "id": "Modification",
+        "modName": "Ain't no modification",
+        "protection": null,
+        "increaseWeaponDamage": null,
+        "evasion": null,
+        "prototype":null
+    }, {
+        "id": "Speedy",
+        "modName": "Speedy",
+        "protection": 10,
+        "increaseWeaponDamage": 0,
+        "evasion": 55,
+        "moreInfo": "Increased evasion capabilities.",
+        "prototype": "Modification"
+    }, {
+        "id": "ShieldSmash",
+        "modName": "Shield Smash",
+        "protection": 0,
+        "increaseWeaponDamage": 90,
+        "evasion": 0,
+        "moreInfo": "Increases the effectiveness of your weapon.",
+        "prototype": "Modification"
+    }, {
+        "id": "Armor",
+        "modName": "Armor",
+        "protection": 80,
+        "increaseWeaponDamage": 0,
+        "evasion": 10,
+        "moreInfo": "Decreases the damage of your opponent's attacks",
+        "prototype": "Modification"
+    }, {
+        "id": "StealthTech",
+        "modName": "Stealth Tech",
+        "protection": 50,
+        "increaseWeaponDamage": 0,
+        "evasion": 50,
+        "moreInfo": "Increase your evasion and protection capabilities.",
+        "prototype": "Modification"
+    }, {
+        "id": "Failsafe",
+        "modName": "Failsafe",
+        "protection": 0,
+        "increaseWeaponDamage": -20,
+        "evasion": 60,
+        "moreInfo": "High chance to evade your opponent's attacks, lowers weapon effectiveness.",
+        "prototype": "Modification"
+    }, {
+        "id": "RaisedWell",
+        "modName": "Raised Well",
+        "protection": 50,
+        "increaseWeaponDamage": -10,
+        "evasion": 40,
+        "moreInfo": "Increased protection and evasion skills.",
+        "prototype": "Modification"
+    }]
+}

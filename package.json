@@ -1,0 +1,34 @@
+{
+  "name": "modern-js-quiz-morecallan",
+  "version": "1.0.0",
+  "description": "## Setup",
+  "main": "quiz.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nss-evening-cohort-3/modern-js-quiz-morecallan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nss-evening-cohort-3/modern-js-quiz-morecallan/issues"
+  },
+  "homepage": "https://github.com/nss-evening-cohort-3/modern-js-quiz-morecallan#readme",
+  "dependencies": {
+    "browserify": "^13.0.0",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.0",
+    "gulp-sourcemaps": "^2.0.0-alpha",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "jquery": "^2.2.3",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.1.0",
+    "lodash.assign": "^4.0.8",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  }
+}

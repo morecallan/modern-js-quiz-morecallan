@@ -1,0 +1,50 @@
+{
+    "weapons": [{
+        "id": "Weapon",
+        "weaponName": "Can of Fancy Feast",
+        "damage": null,
+        "prototype": null
+    }, {
+        "id": "Tazer",
+        "weaponName": "Tazer",
+        "minDamage": 10,
+        "maxDamage": 30,
+        "moreInfo": "He said there was no spark between us anymore.",
+        "prototype": "Weapon"
+    }, {
+        "id": "Screwdriver",
+        "weaponName": "Screwdriver",
+        "minDamage": 4,
+        "maxDamage": 40,
+        "moreInfo": "Drive your opponents crazy.",
+        "prototype": "Weapon"
+    }, {
+        "id": "BottleRocket",
+        "weaponName": "Bottle Rocket",
+        "minDamage": 20,
+        "maxDamage": 35,
+        "moreInfo": "Wanna do launch?",
+        "prototype": "Weapon"
+    }, {
+        "id": "Emotions",
+        "weaponName": "Emotions",
+        "minDamage": 0,
+        "maxDamage": 45,
+        "moreInfo": "What can be more threatening to a robot?",
+        "prototype": "Weapon"
+    }, {
+        "id": "Gun",
+        "weaponName": "Gun",
+        "minDamage": 15,
+        "maxDamage": 30,
+        "moreInfo": "So many idiots, so few bullets...",
+        "prototype": "Weapon"
+    }, {
+        "id": "RainCloud",
+        "weaponName": "Rain Cloud",
+        "minDamage": 11,
+        "maxDamage": 33,
+        "moreInfo": "Watch your opponent rust into oblivion.",
+        "prototype": "Weapon"
+    }]
+}

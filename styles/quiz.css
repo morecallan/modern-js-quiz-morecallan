@@ -1,0 +1,454 @@
+body {
+  background: url(../img/battledome.jpg) center center fixed;
+  background-size:cover;
+  margin-left: 10px;
+  font-family: 'Iceberg', cursive;
+  color: white;
+}
+
+a, a:hover{
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+
+/**********************  TOGGLE CLASSES  ***********************/
+.disabled {   
+  opacity: 0.5;
+  pointer-events: none;
+} /*Cards displayed on the same page but are not active*/
+
+.selected {  
+  box-shadow: 0 0 5px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 15px rgba(255,255,255,1) , 0 0 20px #ff00de , 0 0 35px #ff00de , 0 0 40px #ff00de , 0 0 50px #ff00de ;
+} /*Selections that have been clicked on by user*/
+
+.hidden {
+  display: none;
+}
+
+.winner {
+  -webkit-animation: neonPink .4s ease-in-out infinite alternate;
+  -moz-animation: neonPink .4s ease-in-out infinite alternate;
+  animation: neonPink .4s ease-in-out infinite alternate;  
+}
+
+@-webkit-keyframes neonPink {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  }
+  to {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+  }
+}
+
+/**********************       LOGO       ************************/
+.logoBar {
+    text-align: center;
+}
+
+.logoMain {
+  font-family: 'Black Ops One', cursive;
+  font-size: 40px;
+}
+
+.logoSub {
+  font-size: 40px;
+}
+
+.logoSwitch {
+  -webkit-animation: neon .4s ease-in-out infinite alternate;
+  -moz-animation: neon .4s ease-in-out infinite alternate;
+  animation: neon .4s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0DDEFF, 0 0 70px #0DDEFF, 0 0 80px #0DDEFF, 0 0 100px #0DDEFF, 0 0 150px #0DDEFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0DDEFF, 0 0 35px #0DDEFF, 0 0 40px #0DDEFF, 0 0 50px #0DDEFF, 0 0 75px #0DDEFF;
+  }
+}
+
+
+
+/***********  PLAYER SETUP CARDS: Base Formatting  **************/
+.playSetUpCard {
+  position: relative;
+  margin-top: 30px;
+  padding-left: 15px;
+  background-color: black;
+  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+}
+
+.cardHeader {
+  margin: 7px 30px 0;
+  font-size: 30px;
+}
+
+.imageLabel {
+  margin: 5px 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+.nextArrow {
+  font-size: 60px;
+}
+
+.nextArrow:hover {
+  text-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+}
+
+.hoverOutput {
+  text-align: center;
+  margin-top: -20px;
+  font-size: 18px;
+}
+
+
+
+/*********** PAGE 1: Card 1: Player Name *************/
+#player1Name {
+  height: 140px;
+}
+
+#p1NameInput {
+  width: 70%;
+  margin: 15px 0 0 30px;
+  padding-left: 20px;
+  font-size: 24px;
+  color: blue;
+}
+
+#p1NameNextArrow {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+
+/*********** PAGE 1: Card 2: Player Type *************/
+#player1Type {
+  height: 300px;
+}
+
+.playerType {
+  margin: 30px 5px 0 25px;
+  display: inline-block;
+  width: 20%;
+}
+
+#player1Type img {
+  margin: 0;
+  display: block;
+  width: 100%;
+}
+
+#p1TypeNextArrow {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+}
+
+
+/*********** PAGE 1: Card 3: Player Model **************/
+#player1Model {
+  height: 470px;
+  font-size: 20px;
+}
+
+.playerModel {
+  margin: 30px 30px 0;
+  display: inline-block;
+  width: 85%;
+  background: rgba(13, 222, 255, .2);
+}
+
+.modelDetailsContainer {
+  display: inline-block;
+  width: 66%;
+  float: right;
+}
+
+#player1Model img {
+  margin: 15px 30px;
+  display: inline-block;
+  float: left;
+  width: 15%;
+}
+
+.playerModel .modelStat h3 {
+  margin: 4px;
+  display: inline-block;
+  font-size: 24px;
+}
+
+.playerModel .modelStat .progress {
+  display: inline-block;
+  width: 60%;
+  margin: auto;
+}
+
+#p1ModelNextArrow {
+  position: absolute;
+  top: 225px;
+  right: 10px;
+}
+
+
+/*********** PAGE 2: Card 1: Player Weapon **************/
+#player1Weapons {
+  height: 470px;
+}
+
+
+.playerWeapon {
+  width: 70%;
+  margin: 15%;
+  padding: 10px;
+  background: rgba(13, 222, 255, .2);
+  font-size: 24px;
+  text-align: center;
+}
+
+#p1WeaponsNextArrow {
+  position: absolute;
+  top: 375px;
+  right: 10px;
+}
+
+
+/*********** PAGE 2: Card 2: Player Modifications **************/
+#player1Modifications {
+  height: 470px;
+}
+
+.playerModification {
+  width: 70%;
+  margin: 15%;
+  padding: 10px;
+  background: rgba(13, 222, 255, .2);
+  font-size: 24px;
+  text-align: center;
+}
+
+#p1ModificationsNextArrow {
+  position: absolute;
+  top: 375px;
+  right: 10px;
+}
+
+
+/*********** PAGE 1: Card 1: Player Name *************/
+#player2Name {
+  height: 140px;
+}
+
+#p2NameInput {
+  width: 70%;
+  margin: 15px 0 0 30px;
+  padding-left: 20px;
+  font-size: 24px;
+  color: blue;
+}
+
+#p2NameNextArrow {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+
+/*********** PAGE 1: Card 2: Player Type *************/
+#player2Type {
+  height: 300px;
+}
+
+.playerType {
+  margin: 30px 5px 0 25px;
+  display: inline-block;
+  width: 20%;
+}
+
+#player2Type img {
+  margin: 0;
+  display: block;
+  width: 100%;
+}
+
+#p2TypeNextArrow {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+}
+
+
+/*********** PAGE 1: Card 3: Player Model **************/
+#player2Model {
+  height: 470px;
+  font-size: 20px;
+}
+
+.playerModel {
+  margin: 30px 30px 0;
+  display: inline-block;
+  width: 85%;
+  background: rgba(13, 222, 255, .2);
+}
+
+.modelDetailsContainer {
+  display: inline-block;
+  width: 66%;
+  float: right;
+}
+
+#player2Model img {
+  margin: 15px 30px;
+  display: inline-block;
+  float: left;
+  width: 15%;
+}
+
+.playerModel .modelStat h3 {
+  margin: 4px;
+  display: inline-block;
+  font-size: 24px;
+}
+
+.playerModel .modelStat .progress {
+  display: inline-block;
+  width: 60%;
+  margin: auto;
+}
+
+#p2ModelNextArrow {
+  position: absolute;
+  top: 225px;
+  right: 10px;
+}
+
+
+/*********** PAGE 2: Card 1: Player Weapon **************/
+#player2Weapons {
+  height: 470px;
+}
+
+
+.playerWeapon {
+  width: 70%;
+  margin: 15%;
+  padding: 10px;
+  background: rgba(13, 222, 255, .2);
+  font-size: 24px;
+  text-align: center;
+}
+
+#p2WeaponsNextArrow {
+  position: absolute;
+  top: 375px;
+  right: 10px;
+}
+
+
+/*********** PAGE 2: Card 2: Player Modifications **************/
+#player2Modifications {
+  height: 470px;
+}
+
+.playerModification {
+  width: 70%;
+  margin: 15%;
+  padding: 10px;
+  background: rgba(13, 222, 255, .2);
+  font-size: 24px;
+  text-align: center;
+}
+
+#p2ModificationsNextArrow {
+  position: absolute;
+  top: 375px;
+  right: 10px;
+}
+
+
+/***********   PLAYER DISPLAY: Ready to battle?   **************/
+.playerDisplay {
+  background-color: black;
+  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+  text-align: center;
+}
+
+.playerDisplay img{
+  width: 40%;
+  margin: 4% 10% 0 10%;
+}
+
+.playerInfo {
+  margin: 3px auto;
+}
+
+.playerDisplay p:last-of-type {
+  padding-bottom: 20px;
+}
+
+.battle {
+  text-align: center;
+}
+
+
+/***********  BATTLEDOME: FIGHTING ROBOTS OH MY  **************/
+#battleDome .col-md-3 {
+  background-color: rgba(0, 0, 0, .8);
+  border-radius: 15px;
+  box-shadow: 0 0 2.5px rgba(255,255,255,1) , 0 0 5px rgba(255,255,255,1) , 0 0 7.5px rgba(255,255,255,1) , 0 0 10px #0DDEFF , 0 0 17.5px #0DDEFF , 0 0 20px #0DDEFF , 0 0 25px #0DDEFF ;
+  margin-top: 30px;
+  border: 30px solid transparent;
+  height: 400px;
+  text-align: center;
+}
+
+.mainContainer {
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.playerNameDisplay {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 30px;
+}
+
+#battleDome img {
+  width: 60%;
+  margin: 20%;
+}
+
+#battleOutputText {
+  background-color: rgba(0, 0, 0, .3);
+  text-align: center;
+  overflow: auto;
+  height: 475px;
+  border: 10px solid transparent;
+}
+
+#battleDome p {
+  margin: 0 4px;
+}
+
+.attackOutput1 {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+
+.battleWon {
+  font-family: 'Black Ops One', cursive;
+  font-size: 40px;  
+  margin-top: 120px;
+}
+
+.battleAgain {
+  text-align: center;
+  margin-top: 30px;
+}

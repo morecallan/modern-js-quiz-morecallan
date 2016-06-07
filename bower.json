@@ -1,0 +1,14 @@
+{
+  "name": "modern-js-quiz-morecallan",
+  "homepage": "https://github.com/nss-evening-cohort-3/modern-js-quiz-morecallan",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
